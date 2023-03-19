@@ -17,7 +17,7 @@ const productsQuery = gql`
   }
 `;
 
-export default function Home({ products }) {
+export default function Home({ products }: any) {
   console.log(products);
   return (
     <>
