@@ -1,10 +1,24 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
 import styles from "@component/styles/Home.module.css";
+import { storefront } from "@component/utils/shopify";
 
-const inter = Inter({ subsets: ["latin"] });
+const gql = String.raw;
 
-export default function Home() {
+const productsQuery = gql`
+  {
+    products(first: 5) {
+      edges {
+        node {
+          id
+          title
+        }
+      }
+    }
+  }
+`;
+
+export default function Home({ products }) {
+  console.log(products);
   return (
     <>
       <Head>
@@ -18,4 +32,13 @@ export default function Home() {
       </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const data = await storefront(productsQuery);
+  return {
+    props: {
+      products: data,
+    },
+  };
 }

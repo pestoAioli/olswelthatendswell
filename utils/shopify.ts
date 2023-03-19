@@ -1,25 +1,14 @@
-export const postToShopify = async ({ query, variables = {} }) => {
-  try {
-    if (process.env.SHOPIFY_API_ENDPOINT) {
-      const result = await fetch("olswelthatendswell.myshopify.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Shopify-Storefront-Access-Token":
-            "731d345d8a7b419adbf9789b27311a7b",
-        },
-        body: JSON.stringify({ query, variables }),
-      }).then((res) => res.json());
-
-      if (result.errors) {
-        console.log({ errors: result.errors });
-      } else if (!result || !result.data) {
-        console.log({ result });
-        return "No results found.";
-      }
-      return result.data;
+export async function storefront(query: any, variables = {}) {
+  const res = await fetch(
+    "https://olswelthatendswell.myshopify.com/admin/api/2023-01/graphql.json",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Access-Token": "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",
+      },
+      body: JSON.stringify({ query, variables }),
     }
-  } catch (error) {
-    console.log(error);
-  }
-};
+  );
+  return res.json();
+}
