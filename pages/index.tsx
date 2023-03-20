@@ -62,7 +62,7 @@ export default function Home({ products }: any) {
             olswel.net
           </h1>
         </div>
-        {products.map((product, i) => (
+        {products.map((product: any, i: any) => (
           <h2 key={i}>{product.node.title}</h2>
         ))}
       </main>
