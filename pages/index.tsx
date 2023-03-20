@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import styles from "@component/styles/Home.module.css";
 import { storefront } from "@component/utils/shopify";
 
@@ -11,6 +12,18 @@ const productsQuery = gql`
         node {
           id
           title
+          media(first: 5) {
+            edges {
+              node {
+                ... on MediaImage {
+                  id
+                  image {
+                    transformedSrc
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -27,8 +40,31 @@ export default function Home({ products }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <h1>olswel</h1>
+      <main
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            marginTop: 24,
+            display: "flex",
+          }}
+        >
+          <Image src={"/westadam.png"} width={180} height={360} alt="olswel" />
+          <h1
+            style={{
+              fontSize: 48,
+            }}
+          >
+            olswel.net
+          </h1>
+        </div>
+        {products.map((product, i) => (
+          <h2 key={i}>{product.node.title}</h2>
+        ))}
       </main>
     </>
   );
@@ -38,7 +74,7 @@ export async function getStaticProps() {
   const data = await storefront(productsQuery);
   return {
     props: {
-      products: data,
+      products: data.data.products.edges,
     },
   };
 }
