@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "@component/styles/Home.module.css";
 import { storefront } from "@component/utils/shopify";
+import { useEffect, useRef, useState } from "react";
 
 const gql = String.raw;
 
@@ -31,7 +32,18 @@ const productsQuery = gql`
 `;
 
 export default function Home({ products }: any) {
-  console.log(products);
+  const [barsWidth, setBarsWidth] = useState(10);
+  const [bars, setBars] = useState(() => {
+    const bars = [];
+    for (let i = 0; i < 69; i++) {
+      bars.push(1);
+    }
+    return bars;
+  });
+  useEffect(() => {
+    console.log(window.innerHeight);
+  }, []);
+  console.log(products, bars);
   return (
     <>
       <Head>
@@ -62,9 +74,55 @@ export default function Home({ products }: any) {
             olswel.net
           </h1>
         </div>
-        {products.map((product: any, i: any) => (
-          <h2 key={i}>{product.node.title}</h2>
-        ))}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 10,
+          }}
+        >
+          {products.map((product: any, i: any) => (
+            <div
+              style={{
+                width: 240,
+              }}
+              key={i}
+            >
+              <h2
+                style={{
+                  wordWrap: "break-word",
+                }}
+              >
+                {product.node.title}
+              </h2>
+              <Image
+                src={product.node.media.edges[0].node.image.transformedSrc}
+                alt={"product pic"}
+                width={240}
+                height={180}
+              />
+            </div>
+          ))}
+        </div>
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          {bars.map((bar, i) => (
+            <div
+              key={i}
+              className={styles.poop}
+              style={{
+                width: 20,
+                position: "relative",
+                marginTop: Math.random() * 100,
+                border: "1px red solid",
+                bottom: 0,
+              }}
+            />
+          ))}
+        </div>
       </main>
     </>
   );
