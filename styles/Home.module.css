@@ -1,3 +1,8 @@
-.poop:hover {
-  background-color: papayawhip;
+.poop {
+  background-color: darkgray;
+}
+
+.pee:hover .poop {
+  background-color: grey;
+  transition: 0.6s;
 }

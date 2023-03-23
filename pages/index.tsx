@@ -31,11 +31,15 @@ const productsQuery = gql`
   }
 `;
 
+function randomInteger(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 export default function Home({ products }: any) {
-  const [barsWidth, setBarsWidth] = useState(10);
+  const [timestamp, setTimestamp] = useState(0);
   const [bars, setBars] = useState(() => {
     const bars = [];
-    for (let i = 0; i < 69; i++) {
+    for (let i = 0; i < 130; i++) {
       bars.push(1);
     }
     return bars;
@@ -107,6 +111,33 @@ export default function Home({ products }: any) {
         <div
           style={{
             display: "flex",
+            gap: 0.5,
+          }}
+          className={styles.pee}
+        >
+          {bars.map((bar, i) => (
+            <div
+              key={i}
+              className={styles.poop}
+              style={{
+                width: 5,
+                position: "relative",
+                marginTop: randomInteger(30, 60),
+                minHeight: 70,
+                backgroundColor: i < timestamp ? "orange" : "darkgray",
+              }}
+              onClick={() => {
+                console.log(i);
+                setTimestamp(() => i);
+              }}
+            />
+          ))}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            gap: 0.5,
+            marginTop: 1,
           }}
         >
           {bars.map((bar, i) => (
@@ -114,14 +145,25 @@ export default function Home({ products }: any) {
               key={i}
               className={styles.poop}
               style={{
-                width: 20,
+                width: 5,
                 position: "relative",
-                marginTop: Math.random() * 100,
-                border: "1px red solid",
-                bottom: 0,
+                height: randomInteger(1, 30),
               }}
             />
           ))}
+        </div>
+        <div
+          style={{
+            marginTop: 20,
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Leave a comment xD"
+            style={{
+              width: "48vw",
+            }}
+          />
         </div>
       </main>
     </>
