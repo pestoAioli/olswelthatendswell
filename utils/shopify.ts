@@ -1,11 +1,14 @@
 export async function storefront(query: any, variables = {}) {
+  if (!process.env.TOKEN) {
+    throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
+  }
   const res = await fetch(
     "https://olswelthatendswell.myshopify.com/admin/api/2023-01/graphql.json",
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Shopify-Access-Token": "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",
+        "X-Shopify-Access-Token": process.env.TOKEN,
       },
       body: JSON.stringify({ query, variables }),
     }

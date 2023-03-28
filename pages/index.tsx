@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "@component/styles/Home.module.css";
 import { storefront } from "@component/utils/shopify";
 import { useEffect, useRef, useState } from "react";
+import { useHover } from "react-aria";
 
 const gql = String.raw;
 
@@ -36,18 +37,51 @@ function randomInteger(min: number, max: number) {
 }
 
 export default function Home({ products }: any) {
+  const { hoverProps, isHovered } = useHover({});
   const [timestamp, setTimestamp] = useState(0);
   const [bars, setBars] = useState(() => {
     const bars = [];
     for (let i = 0; i < 130; i++) {
-      bars.push(1);
+      bars.push(randomInteger(30, 60));
     }
     return bars;
   });
+  const [smolBars, setSmolBars] = useState(() => {
+    const bars = [];
+    for (let i = 0; i < 130; i++) {
+      bars.push(randomInteger(1, 30));
+    }
+    return bars;
+  });
+
   useEffect(() => {
     console.log(window.innerHeight);
+    // console.log(comments, "comments");
   }, []);
   console.log(products, bars);
+  async function addAComment(e) {
+    e.preventDefault();
+    const data = {
+      comment: e.target.comment.value,
+      timestamp: Date.now(),
+    };
+    const jsonData = JSON.stringify(data);
+    const endpoint = "/api/hello";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: jsonData,
+    };
+
+    const response = await fetch(endpoint, options);
+
+    // Get the response data from server as JSON.
+    // If server returns the name submitted, that means the form works.
+    const result = await response.json();
+    console.log(result);
+  }
   return (
     <>
       <Head>
@@ -69,7 +103,12 @@ export default function Home({ products }: any) {
             display: "flex",
           }}
         >
-          <Image src={"/westadam.png"} width={180} height={360} alt="olswel" />
+          <Image
+            src={"/olswellogo.png"}
+            width={360}
+            height={360}
+            alt="olswel"
+          />
           <h1
             style={{
               fontSize: 48,
@@ -117,14 +156,16 @@ export default function Home({ products }: any) {
         >
           {bars.map((bar, i) => (
             <div
+              {...hoverProps}
               key={i}
-              className={styles.poop}
               style={{
                 width: 5,
                 position: "relative",
-                marginTop: randomInteger(30, 60),
+                marginTop: bar,
                 minHeight: 70,
-                backgroundColor: i < timestamp ? "orange" : "darkgray",
+                backgroundColor:
+                  i < timestamp ? "orange" : isHovered ? "grey" : "darkgray",
+                transition: "0.5s",
               }}
               onClick={() => {
                 console.log(i);
@@ -140,14 +181,14 @@ export default function Home({ products }: any) {
             marginTop: 1,
           }}
         >
-          {bars.map((bar, i) => (
+          {smolBars.map((bar, i) => (
             <div
               key={i}
               className={styles.poop}
               style={{
                 width: 5,
                 position: "relative",
-                height: randomInteger(1, 30),
+                height: bar,
               }}
             />
           ))}
@@ -157,20 +198,30 @@ export default function Home({ products }: any) {
             marginTop: 20,
           }}
         >
-          <input
-            type="text"
-            placeholder="Leave a comment xD"
-            style={{
-              width: "48vw",
-            }}
-          />
+          <form
+            className={styles.formForNewSpot}
+            onSubmit={addAComment}
+            method="post"
+            encType="application/json"
+          >
+            <input
+              type="text"
+              placeholder="Leave a comment xD"
+              id="comment"
+              name="comment"
+              style={{
+                width: "48vw",
+              }}
+            />
+            <button type="submit">Submit</button>
+          </form>
         </div>
       </main>
     </>
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await storefront(productsQuery);
   return {
     props: {
