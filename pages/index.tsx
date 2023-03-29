@@ -212,6 +212,7 @@ export default function Home({ products }: any) {
                 width: 5,
                 position: "relative",
                 height: bar,
+                backgroundColor: showComment === i ? "grey" : "darkgrey",
               }}
               onMouseOver={() => {
                 setShowComment(() => i);
@@ -225,7 +226,7 @@ export default function Home({ products }: any) {
                 {comments.map((com, k) => (
                   <>
                     {i === com.comment?.fakeTimestamp &&
-                    showComment === com.comment?.fakeTimestamp ? (
+                      showComment === com.comment?.fakeTimestamp ? (
                       <Image
                         src={"/westadam.png"}
                         width={22}
