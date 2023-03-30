@@ -59,7 +59,6 @@ export default function Home({ products }: any) {
   const timeStampTaken = comments.map((com, i) => {
     return com.comment?.fakeTimestamp;
   });
-  console.log(timeStampTaken, "cum");
   useEffect(() => {
     setWidth(() => window.innerWidth);
     const poop = fetch("/api/hello", {
@@ -169,9 +168,7 @@ export default function Home({ products }: any) {
                 transition: "0.5s",
               }}
               onClick={() => {
-                console.log(i);
                 setTimestamp(() => i);
-                console.log(comments);
               }}
             />
           ))}
@@ -195,7 +192,6 @@ export default function Home({ products }: any) {
               }}
               onMouseOver={() => {
                 setShowComment(() => i);
-                console.log(showComment);
               }}
               onMouseOut={() => {
                 setShowComment(() => 0);
