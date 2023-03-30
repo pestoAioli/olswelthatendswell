@@ -80,6 +80,7 @@ export default function Home({ products }: any) {
       fakeTimestamp: timestamp,
     };
     if (timeStampTaken.includes(data.fakeTimestamp)) {
+      alert("someone already left a comment at that timestamp rawrXD");
       return (e.target.comment.value = "");
     }
     const jsonData = JSON.stringify(data);
