@@ -56,6 +56,10 @@ export default function Home({ products }: any) {
     }
     return bars;
   });
+  const timeStampTaken = comments.map((com, i) => {
+    return com.comment?.fakeTimestamp;
+  });
+  console.log(timeStampTaken, "cum");
   useEffect(() => {
     setWidth(() => window.innerWidth);
     const poop = fetch("/api/hello", {
@@ -75,6 +79,9 @@ export default function Home({ products }: any) {
       timestamp: Date.now(),
       fakeTimestamp: timestamp,
     };
+    if (timeStampTaken.includes(data.fakeTimestamp)) {
+      return (e.target.comment.value = "");
+    }
     const jsonData = JSON.stringify(data);
     const endpoint = "/api/hello";
     const options = {
@@ -138,36 +145,7 @@ export default function Home({ products }: any) {
             olswel.net
           </h1>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 10,
-          }}
-        >
-          {products.map((product: any, i: any) => (
-            <div
-              style={{
-                width: 240,
-              }}
-              key={i}
-            >
-              <h2
-                style={{
-                  wordWrap: "break-word",
-                }}
-              >
-                {product.node.title}
-              </h2>
-              <Image
-                src={product.node.media.edges[0].node.image.transformedSrc}
-                alt={"product pic"}
-                width={240}
-                height={180}
-              />
-            </div>
-          ))}
-        </div>
+        {/*shit went here*/}
         <div
           style={{
             display: "flex",
@@ -226,39 +204,37 @@ export default function Home({ products }: any) {
                 {comments.map((com, k) => (
                   <>
                     {i === com.comment?.fakeTimestamp &&
-                      showComment === com.comment?.fakeTimestamp ? (
-                      <Image
-                        src={"/westadam.png"}
-                        width={22}
-                        height={42}
-                        alt="westadam"
-                        style={{
-                          position: "relative",
-                          right: 22,
-                          bottom: 42,
-                          zIndex: 2005,
-                        }}
-                      />
+                    showComment === com.comment?.fakeTimestamp ? (
+                      <>
+                        <Image
+                          src={"/westadam.png"}
+                          width={22}
+                          height={42}
+                          alt="westadam"
+                          style={{
+                            position: "relative",
+                            right: 22,
+                            bottom: 42,
+                            zIndex: 2005,
+                          }}
+                        />
+                        <p
+                          style={{
+                            backgroundColor: "white",
+                            display: "inline-block",
+                            paddingBottom: 12,
+                            paddingTop: 12,
+                            position: "relative",
+                            bottom: 105,
+                            zIndex: 2000,
+                            whiteSpace: "nowrap",
+                          }}
+                          key={k}
+                        >
+                          {com.comment?.comment}
+                        </p>
+                      </>
                     ) : null}
-                    <p
-                      style={{
-                        display:
-                          showComment === com.comment?.fakeTimestamp
-                            ? "initial"
-                            : "none",
-                        backgroundColor: "whitesmoke",
-                        paddingBottom: 12,
-                        paddingTop: 12,
-                        position: "fixed",
-                        bottom: 62,
-                        zIndex: 2000,
-                      }}
-                      key={k}
-                    >
-                      {i === com.comment?.fakeTimestamp
-                        ? com.comment.comment
-                        : null}
-                    </p>
                   </>
                 ))}
               </div>
@@ -284,6 +260,7 @@ export default function Home({ products }: any) {
               style={{
                 width: "48vw",
               }}
+              required
             />
             <button type="submit">Submit</button>
           </form>
