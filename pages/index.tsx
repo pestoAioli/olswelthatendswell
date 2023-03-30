@@ -113,7 +113,7 @@ export default function Home({ products }: any) {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>olswel (╬ ಠ益ಠ)</title>
         <meta name="description" content="olswel" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/olswellogo.png" />
