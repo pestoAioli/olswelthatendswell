@@ -40,7 +40,7 @@ export default function Home({ products }: any) {
   const { hoverProps, isHovered } = useHover({});
   const [timestamp, setTimestamp] = useState(0);
   const [width, setWidth] = useState(0);
-  const [showComment, setShowComment] = useState(0);
+  const [showComment, setShowComment] = useState<number | null>(null);
   const [comments, setComments] = useState([]);
   const [bars, setBars] = useState(() => {
     const bars = [];
@@ -194,7 +194,7 @@ export default function Home({ products }: any) {
                 setShowComment(() => i);
               }}
               onMouseOut={() => {
-                setShowComment(() => 0);
+                setShowComment(() => null);
               }}
             >
               <div>
@@ -254,6 +254,7 @@ export default function Home({ products }: any) {
               placeholder="Leave a comment xD"
               id="comment"
               name="comment"
+              maxLength={42}
               style={{
                 width: "48vw",
               }}
