@@ -80,7 +80,11 @@ export default function Home({ products }: any) {
   );
 
   useEffect(() => {
-    setWidth(() => window.innerWidth);
+    function handleResize() {
+      console.log("resized to: ", window.innerWidth, "x", window.innerHeight);
+      setWidth(() => window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
     const poop = fetch("/api/hello", {
       method: "GET",
       headers: {
@@ -153,8 +157,8 @@ export default function Home({ products }: any) {
         >
           <Image
             src={"/olswellogo.png"}
-            width={width < 700 ? 240 : 360}
-            height={width < 700 ? 240 : 360}
+            width={width < 700 ? 180 : width < 650 ? 120 : 360}
+            height={width < 700 ? 180 : width < 650 ? 120 : 360}
             alt="olswel"
           />
           <h1
@@ -192,7 +196,7 @@ export default function Home({ products }: any) {
               {...hoverProps}
               key={i}
               style={{
-                width: 5,
+                width: "0.529vw",
                 position: "relative",
                 cursor: "pointer",
                 marginTop: bar,
@@ -224,7 +228,7 @@ export default function Home({ products }: any) {
               key={i}
               className={styles.poop}
               style={{
-                width: 5,
+                width: "0.529vw",
                 position: "relative",
                 height: bar,
                 backgroundColor: showComment === i ? "grey" : "darkgrey",
