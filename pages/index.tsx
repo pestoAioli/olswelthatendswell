@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "@component/styles/Home.module.css";
 import { storefront } from "@component/utils/shopify";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useHover } from "react-aria";
 
 const gql = String.raw;
@@ -35,10 +35,11 @@ const productsQuery = gql`
 function randomInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
-
+const today = new Date();
 export default function Home({ products }: any) {
   const { hoverProps, isHovered } = useHover({});
-  const [timestamp, setTimestamp] = useState(0);
+  const [timestamp, setTimestamp] = useState(null);
+  const [date, setDate] = useState(today);
   const [width, setWidth] = useState(0);
   const [showComment, setShowComment] = useState<number | null>(null);
   const [comments, setComments] = useState([]);
@@ -59,6 +60,25 @@ export default function Home({ products }: any) {
   const timeStampTaken = comments.map((com, i) => {
     return com.comment?.fakeTimestamp;
   });
+  const setTodaysComments = useCallback(
+    (data) => {
+      let commentsOfToday = [];
+      const day = date.getDate();
+      const month = date.getMonth();
+      for (let i = 0; i < data?.length; i++) {
+        if (
+          new Date(data[i].comment?.timestamp).getDate() === day &&
+          new Date(data[i].comment?.timestamp).getMonth() === month
+        ) {
+          console.log(data[i].comment?.timestamp);
+          commentsOfToday.push(data[i]);
+        }
+      }
+      setComments(commentsOfToday);
+    },
+    [date]
+  );
+
   useEffect(() => {
     setWidth(() => window.innerWidth);
     const poop = fetch("/api/hello", {
@@ -68,14 +88,14 @@ export default function Home({ products }: any) {
       },
     })
       .then((res) => res.json())
-      .then((data) => setComments(() => data));
-  }, []);
-
+      .then((data) => setTodaysComments(data));
+    console.log("refresh");
+  }, [date, setTodaysComments]);
   async function addAComment(e) {
     e.preventDefault();
     const data = {
       comment: e.target.comment.value,
-      timestamp: Date.now(),
+      timestamp: new Date(),
       fakeTimestamp: timestamp,
     };
     if (timeStampTaken.includes(data.fakeTimestamp)) {
@@ -148,6 +168,20 @@ export default function Home({ products }: any) {
         {/*shit went here*/}
         <div
           style={{
+            alignSelf: "flex-start",
+          }}
+        >
+          <p>Show comments from:</p>
+          <input
+            type="date"
+            min={"2023-03-28"}
+            onChange={(e) => {
+              setDate(() => new Date(e.target.value));
+            }}
+          />
+        </div>
+        <div
+          style={{
             display: "flex",
             gap: 0.5,
           }}
@@ -164,11 +198,16 @@ export default function Home({ products }: any) {
                 marginTop: bar,
                 minHeight: 70,
                 backgroundColor:
-                  i < timestamp ? "orange" : isHovered ? "grey" : "darkgray",
+                  timestamp !== null && i <= timestamp
+                    ? "orange"
+                    : isHovered
+                    ? "grey"
+                    : "darkgray",
                 transition: "0.5s",
               }}
               onClick={() => {
                 setTimestamp(() => i);
+                console.log(comments);
               }}
             />
           ))}
@@ -200,8 +239,9 @@ export default function Home({ products }: any) {
               <div>
                 {comments.map((com, k) => (
                   <>
-                    {i === com.comment?.fakeTimestamp &&
-                    showComment === com.comment?.fakeTimestamp ? (
+                    {(i === com.comment?.fakeTimestamp &&
+                      showComment === com.comment?.fakeTimestamp) ||
+                    (i === com.comment?.fakeTimestamp && i === timestamp) ? (
                       <>
                         <Image
                           src={"/westadam.png"}
