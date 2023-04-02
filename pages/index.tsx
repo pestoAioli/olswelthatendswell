@@ -36,6 +36,7 @@ function randomInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 const today = new Date();
+const formattedToday = today.toISOString().slice(0, 10);
 export default function Home({ products }: any) {
   const { hoverProps, isHovered } = useHover({});
   const [timestamp, setTimestamp] = useState(null);
@@ -70,7 +71,6 @@ export default function Home({ products }: any) {
           new Date(data[i].comment?.timestamp).getDate() === day &&
           new Date(data[i].comment?.timestamp).getMonth() === month
         ) {
-          console.log(data[i].comment?.timestamp);
           commentsOfToday.push(data[i]);
         }
       }
@@ -80,6 +80,7 @@ export default function Home({ products }: any) {
   );
 
   useEffect(() => {
+    console.log(today.toISOString().slice(0, 10));
     function handleResize() {
       console.log("resized to: ", window.innerWidth, "x", window.innerHeight);
       setWidth(() => window.innerWidth);
@@ -93,7 +94,6 @@ export default function Home({ products }: any) {
     })
       .then((res) => res.json())
       .then((data) => setTodaysComments(data));
-    console.log("refresh");
   }, [date, setTodaysComments]);
   async function addAComment(e) {
     e.preventDefault();
@@ -121,7 +121,6 @@ export default function Home({ products }: any) {
     // Get the response data from server as JSON.
     // If server returns the name submitted, that means the form works.
     const result = await response.json();
-    console.log(result);
 
     const poop = fetch("/api/hello", {
       method: "GET",
@@ -179,6 +178,7 @@ export default function Home({ products }: any) {
           <input
             type="date"
             min={"2023-03-28"}
+            value={formattedToday}
             onChange={(e) => {
               setDate(() => new Date(e.target.value));
             }}
@@ -248,6 +248,7 @@ export default function Home({ products }: any) {
                     (i === com.comment?.fakeTimestamp && i === timestamp) ? (
                       <>
                         <Image
+                          key={k}
                           src={"/westadam.png"}
                           width={22}
                           height={42}
