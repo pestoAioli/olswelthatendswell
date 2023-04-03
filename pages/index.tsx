@@ -256,31 +256,32 @@ export default function Home({ products }: any) {
               <div>
                 {comments.map((com, k) => (
                   <>
+                    {i === com.comment?.fakeTimestamp && (
+                      <Image
+                        src={"/westadam.png"}
+                        width={10}
+                        height={16}
+                        alt="westadam"
+                        style={{
+                          position: "relative",
+                          right: 22,
+                          bottom: 0,
+                          zIndex: 2005,
+                        }}
+                      />
+                    )}
                     {(i === com.comment?.fakeTimestamp &&
                       showComment === com.comment?.fakeTimestamp) ||
                     (i === com.comment?.fakeTimestamp && i === timestamp) ? (
                       <>
-                        <Image
-                          key={k}
-                          src={"/westadam.png"}
-                          width={22}
-                          height={42}
-                          alt="westadam"
-                          style={{
-                            position: "relative",
-                            right: 22,
-                            bottom: 42,
-                            zIndex: 2005,
-                          }}
-                        />
                         <p
                           style={{
                             backgroundColor: "white",
                             display: "inline-block",
-                            paddingBottom: 12,
-                            paddingTop: 12,
+                            paddingBottom: 2,
+                            paddingTop: 2,
                             position: "relative",
-                            bottom: 105,
+                            bottom: 12,
                             zIndex: 2000,
                             whiteSpace: "nowrap",
                           }}
