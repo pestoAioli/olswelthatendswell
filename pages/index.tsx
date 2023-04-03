@@ -175,7 +175,7 @@ export default function Home({ products }: any) {
           />
           <h1
             style={{
-              fontSize: 48,
+              fontSize: 56,
             }}
           >
             olswel.net
