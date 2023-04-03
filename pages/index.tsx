@@ -102,6 +102,7 @@ export default function Home({ products }: any) {
       comment: e.target.comment.value,
       timestamp: new Date(),
       fakeTimestamp: timestamp,
+      name: e.target.name.value,
     };
     if (timeStampTaken.includes(data.fakeTimestamp)) {
       alert("someone already left a comment at that timestamp rawrXD");
@@ -273,23 +274,36 @@ export default function Home({ products }: any) {
                     {(i === com.comment?.fakeTimestamp &&
                       showComment === com.comment?.fakeTimestamp) ||
                     (i === com.comment?.fakeTimestamp && i === timestamp) ? (
-                      <>
+                      <div
+                        style={{
+                          backgroundColor: "white",
+                          display: "flex",
+                          paddingBottom: 2,
+                          paddingTop: 2,
+                          position: "relative",
+                          bottom: 12,
+                          zIndex: 2000,
+                          whiteSpace: "nowrap",
+                        }}
+                        key={k}
+                      >
                         <p
                           style={{
-                            backgroundColor: "white",
+                            color: "orange",
                             display: "inline-block",
-                            paddingBottom: 2,
-                            paddingTop: 2,
-                            position: "relative",
-                            bottom: 12,
-                            zIndex: 2000,
-                            whiteSpace: "nowrap",
                           }}
-                          key={k}
                         >
+                          {com.comment?.name}
+                        </p>
+                        <p
+                          style={{
+                            display: "inline-block",
+                          }}
+                        >
+                          {com.comment?.name ? ": " : ""}
                           {com.comment?.comment}
                         </p>
-                      </>
+                      </div>
                     ) : null}
                   </>
                 ))}
@@ -308,6 +322,13 @@ export default function Home({ products }: any) {
             method="post"
             encType="application/json"
           >
+            <input
+              type="text"
+              placeholder="yuor name"
+              id="name"
+              name="name"
+              maxLength={14}
+            />
             <input
               type="text"
               placeholder="Leave a comment xD"
