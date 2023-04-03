@@ -57,9 +57,6 @@ export default function Home({ products }: any) {
     }
     return bars;
   });
-  const timeStampTaken = comments.map((com, i) => {
-    return com.comment?.fakeTimestamp;
-  });
   const setTodaysComments = useCallback(
     (data) => {
       let commentsOfToday = [];
@@ -77,8 +74,11 @@ export default function Home({ products }: any) {
     },
     [date]
   );
-
+  let timeStampTaken = useRef([]);
   useEffect(() => {
+    timeStampTaken.current = comments.map((com, i) => {
+      return com.comment?.fakeTimestamp;
+    });
     setWidth(() => window.innerWidth);
     console.log(width);
     console.log(Date.parse(today.toLocaleString().slice(0, 8)));
@@ -95,6 +95,7 @@ export default function Home({ products }: any) {
     })
       .then((res) => res.json())
       .then((data) => setTodaysComments(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, setTodaysComments]);
   async function addAComment(e) {
     e.preventDefault();
@@ -104,7 +105,7 @@ export default function Home({ products }: any) {
       fakeTimestamp: timestamp,
       name: e.target.name.value,
     };
-    if (timeStampTaken.includes(data.fakeTimestamp)) {
+    if (timeStampTaken.current.includes(data.fakeTimestamp)) {
       alert("someone already left a comment at that timestamp rawrXD");
       return (e.target.comment.value = "");
     }
@@ -133,7 +134,8 @@ export default function Home({ products }: any) {
       .then((res) => res.json())
       .then((data) => setComments(() => data));
 
-    return (e.target.comment.value = "");
+    e.target.comment.value = "";
+    return (e.target.name.value = "");
   }
   return (
     <>
