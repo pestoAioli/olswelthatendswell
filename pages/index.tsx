@@ -40,7 +40,7 @@ export default function Home({ products }: any) {
   const { hoverProps, isHovered } = useHover({});
   const [timestamp, setTimestamp] = useState(null);
   const [date, setDate] = useState(today);
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(null);
   const [showComment, setShowComment] = useState<number | null>(null);
   const [comments, setComments] = useState([]);
   const [bars, setBars] = useState(() => {
@@ -79,6 +79,8 @@ export default function Home({ products }: any) {
   );
 
   useEffect(() => {
+    setWidth(() => window.innerWidth);
+    console.log(width);
     console.log(Date.parse(today.toLocaleString().slice(0, 8)));
     function handleResize() {
       console.log("resized to: ", window.innerWidth, "x", window.innerHeight);
@@ -155,8 +157,20 @@ export default function Home({ products }: any) {
         >
           <Image
             src={"/olswellogo.png"}
-            width={width < 700 ? 180 : width < 650 ? 120 : 360}
-            height={width < 700 ? 180 : width < 650 ? 120 : 360}
+            width={
+              width > 800
+                ? width * 0.4 - 150
+                : width < 700
+                ? width * 0.8 - 150
+                : width * 0.5 - 150
+            }
+            height={
+              width > 800
+                ? width * 0.4 - 150
+                : width < 700
+                ? width * 0.8 - 150
+                : width * 0.5 - 150
+            }
             alt="olswel"
           />
           <h1
@@ -230,6 +244,7 @@ export default function Home({ products }: any) {
                 position: "relative",
                 height: bar,
                 backgroundColor: showComment === i ? "grey" : "darkgrey",
+                transition: "0.5s",
               }}
               onMouseOver={() => {
                 setShowComment(() => i);
