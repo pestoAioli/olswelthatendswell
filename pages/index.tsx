@@ -264,7 +264,7 @@ export default function Home({ products }: any) {
                         alt="westadam"
                         style={{
                           position: "relative",
-                          right: 22,
+                          right: 3,
                           bottom: 0,
                           zIndex: 2005,
                         }}
