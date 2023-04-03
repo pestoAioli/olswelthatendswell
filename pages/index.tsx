@@ -276,12 +276,9 @@ export default function Home({ products }: any) {
                     (i === com.comment?.fakeTimestamp && i === timestamp) ? (
                       <div
                         style={{
-                          backgroundColor: "white",
                           display: "flex",
-                          paddingBottom: 2,
-                          paddingTop: 2,
                           position: "relative",
-                          bottom: 12,
+                          bottom: 10,
                           zIndex: 2000,
                           whiteSpace: "nowrap",
                         }}
