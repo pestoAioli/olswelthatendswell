@@ -174,13 +174,15 @@ export default function Home({ products }: any) {
             }
             alt="olswel"
           />
-          <h1
-            style={{
-              fontSize: 56,
-            }}
-          >
-            olswel.net
-          </h1>
+          <div>
+            <h1
+              style={{
+                fontSize: 56,
+              }}
+            >
+              olswel.net
+            </h1>
+          </div>
         </div>
         {/*shit went here*/}
         <div
@@ -273,7 +275,9 @@ export default function Home({ products }: any) {
                     )}
                     {(i === com.comment?.fakeTimestamp &&
                       showComment === com.comment?.fakeTimestamp) ||
-                    (i === com.comment?.fakeTimestamp && i === timestamp) ? (
+                    (i === com.comment?.fakeTimestamp &&
+                      i === timestamp &&
+                      !showComment) ? (
                       <div
                         style={{
                           display: "flex",
