@@ -36,7 +36,6 @@ function randomInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 const today = new Date();
-const formattedToday = today.toISOString().slice(0, 10);
 export default function Home({ products }: any) {
   const { hoverProps, isHovered } = useHover({});
   const [timestamp, setTimestamp] = useState(null);
@@ -80,7 +79,7 @@ export default function Home({ products }: any) {
   );
 
   useEffect(() => {
-    console.log(today.toISOString().slice(0, 10));
+    console.log(Date.parse(today.toLocaleString().slice(0, 8)));
     function handleResize() {
       console.log("resized to: ", window.innerWidth, "x", window.innerHeight);
       setWidth(() => window.innerWidth);
@@ -178,7 +177,6 @@ export default function Home({ products }: any) {
           <input
             type="date"
             min={"2023-03-28"}
-            value={formattedToday}
             onChange={(e) => {
               setDate(() => new Date(e.target.value));
             }}
