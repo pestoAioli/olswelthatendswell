@@ -249,21 +249,30 @@ export default function Home({ products }: any) {
         >
           <iframe
             src="https://olswel.sellfy.store/embed/product/dfihld/"
-            width={100}
-            height={100}
-            style={{ border: "none", overflow: "hidden" }}
+            style={{
+              border: "none",
+              overflow: "hidden",
+              height: 100,
+              width: 100,
+            }}
           ></iframe>
           <iframe
             src="https://olswel.sellfy.store/embed/product/6HDx/"
-            width={100}
-            height={100}
-            style={{ border: "none", overflowX: "hidden" }}
+            style={{
+              border: "none",
+              overflow: "hidden",
+              height: 100,
+              width: 100,
+            }}
           ></iframe>
           <iframe
             src="https://olswel.sellfy.store/embed/product/hld8in/"
-            width={100}
-            height={100}
-            style={{ border: "none", overflow: "hidden" }}
+            style={{
+              border: "none",
+              overflow: "hidden",
+              height: 100,
+              width: 100,
+            }}
           ></iframe>
         </div>
         <div
