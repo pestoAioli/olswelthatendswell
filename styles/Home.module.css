@@ -6,3 +6,7 @@
   background-color: grey;
   transition: 0.6s;
 }
+
+.product * span {
+  display: hidden;
+}

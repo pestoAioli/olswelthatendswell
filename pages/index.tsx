@@ -5,6 +5,7 @@ import { storefront } from "@component/utils/shopify";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useHover } from "react-aria";
 import moment from "moment";
+import Script from "next/script";
 
 const gql = String.raw;
 
@@ -162,6 +163,7 @@ export default function Home({ products }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/olswellogo.png" />
       </Head>
+      <Script src="https://sellfy.com/js/api_buttons.js%22%3E" />
       <main
         style={{
           display: "flex",
@@ -173,6 +175,7 @@ export default function Home({ products }: any) {
           style={{
             marginTop: 24,
             display: "flex",
+            marginRight: 50,
           }}
         >
           <Image
@@ -181,19 +184,24 @@ export default function Home({ products }: any) {
               width > 800
                 ? width * 0.4 - 150
                 : width < 700
-                ? width * 0.8 - 150
-                : width * 0.5 - 150
+                  ? width * 0.8 - 150
+                  : width * 0.5 - 150
             }
             height={
               width > 800
                 ? width * 0.4 - 150
                 : width < 700
-                ? width * 0.8 - 150
-                : width * 0.5 - 150
+                  ? width * 0.8 - 150
+                  : width * 0.5 - 150
             }
             alt="olswel"
           />
-          <div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <h1
               style={{
                 fontSize: 56,
@@ -201,15 +209,55 @@ export default function Home({ products }: any) {
             >
               olswel.net
             </h1>
+            <a href="www.soundcloud.com/olswel">www.soundcloud.com</a>
+            <a href="https://open.spotify.com/artist/5aFfTz3PUiklCHbgz2Aylb?si=lkTC6RvfTPaR8oPccJQdYg">
+              www.spotify.com
+            </a>
+            <a href="https://www.instagram.com/olswelolswel">
+              www.instagram.com
+            </a>
           </div>
         </div>
         {/*shit went here*/}
         <div
           style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 50,
+            marginTop: 24,
+            marginBottom: 24,
+          }}
+        >
+          <iframe
+            src="https://olswel.sellfy.store/embed/product/dfihld/"
+            width={100}
+            height={100}
+            allowTransparency={true}
+            style={{ border: "none" }}
+            className={styles.product}
+          ></iframe>
+          <iframe
+            src="https://olswel.sellfy.store/embed/product/6HDx/"
+            width={100}
+            height={100}
+            allowTransparency={true}
+            style={{ border: "none" }}
+            className={styles.product}
+          ></iframe>
+          <iframe
+            src="https://olswel.sellfy.store/embed/product/hld8in/"
+            width={100}
+            height={100}
+            allowTransparency={true}
+            style={{ border: "none" }}
+            className={styles.product}
+          ></iframe>
+        </div>
+        <div
+          style={{
             alignSelf: "flex-start",
           }}
         >
-          <p>Show comments from:</p>
           <input
             type="date"
             min={"2023-03-28"}
@@ -241,8 +289,8 @@ export default function Home({ products }: any) {
                   timestamp !== null && i <= timestamp
                     ? "orange"
                     : isHovered
-                    ? "grey"
-                    : "darkgray",
+                      ? "grey"
+                      : "darkgray",
                 transition: "0.5s",
               }}
               onClick={() => {
@@ -297,9 +345,9 @@ export default function Home({ products }: any) {
                     )}
                     {(i === com.comment?.fakeTimestamp &&
                       showComment === com.comment?.fakeTimestamp) ||
-                    (i === com.comment?.fakeTimestamp &&
-                      i === timestamp &&
-                      !showComment) ? (
+                      (i === com.comment?.fakeTimestamp &&
+                        i === timestamp &&
+                        !showComment) ? (
                       <div
                         style={{
                           display: "flex",
