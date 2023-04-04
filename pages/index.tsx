@@ -83,6 +83,10 @@ export default function Home({ products }: any) {
     [date]
   );
   let timeStampTaken = useRef([]);
+  function handleResize() {
+    console.log("resized to: ", window.innerWidth, "x", window.innerHeight);
+    setWidth(() => window.innerWidth);
+  }
   useEffect(() => {
     console.log(today, "today");
     console.log(moment().format());
@@ -91,11 +95,8 @@ export default function Home({ products }: any) {
     });
     console.log(timeStampTaken.current);
     console.log(width);
+    setWidth(() => window.innerWidth);
     console.log(Date.parse(today.toLocaleString().slice(0, 8)));
-    function handleResize() {
-      console.log("resized to: ", window.innerWidth, "x", window.innerHeight);
-      setWidth(() => window.innerWidth);
-    }
     window.addEventListener("resize", handleResize);
     const poop = fetch("/api/hello", {
       method: "GET",
