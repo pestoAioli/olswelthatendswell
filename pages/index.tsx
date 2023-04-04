@@ -4,6 +4,7 @@ import styles from "@component/styles/Home.module.css";
 import { storefront } from "@component/utils/shopify";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useHover } from "react-aria";
+import moment from "moment";
 
 const gql = String.raw;
 
@@ -35,7 +36,8 @@ const productsQuery = gql`
 function randomInteger(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
-const today = new Date();
+// const today = new Date().toISOString().slice(0, 10);
+const today = moment().format().slice(0, 10);
 export default function Home({ products }: any) {
   const { hoverProps, isHovered } = useHover({});
   const [timestamp, setTimestamp] = useState(null);
@@ -60,14 +62,20 @@ export default function Home({ products }: any) {
   const setTodaysComments = useCallback(
     (data) => {
       let commentsOfToday = [];
-      const day = date.getDate();
-      const month = date.getMonth();
       for (let i = 0; i < data?.length; i++) {
-        if (
-          new Date(data[i].comment?.timestamp).getDate() === day &&
-          new Date(data[i].comment?.timestamp).getMonth() === month
-        ) {
-          commentsOfToday.push(data[i]);
+        const x = data[i].comment.timestamp;
+        if (typeof x === "string") {
+          if (data[i].comment.timestamp.slice(0, 10) === date) {
+            commentsOfToday.push(data[i]);
+          }
+        }
+        if (typeof x === "number") {
+          console.log(
+            moment(x).format().slice(0, 10),
+            "number format check thang"
+          );
+          if (moment(x).format().slice(0, 10) === date)
+            commentsOfToday.push(data[i]);
         }
       }
       setComments(commentsOfToday);
@@ -76,10 +84,12 @@ export default function Home({ products }: any) {
   );
   let timeStampTaken = useRef([]);
   useEffect(() => {
+    console.log(today, "today");
+    console.log(moment().format());
     timeStampTaken.current = comments.map((com, i) => {
       return com.comment?.fakeTimestamp;
     });
-    setWidth(() => window.innerWidth);
+    console.log(timeStampTaken.current);
     console.log(width);
     console.log(Date.parse(today.toLocaleString().slice(0, 8)));
     function handleResize() {
@@ -97,17 +107,21 @@ export default function Home({ products }: any) {
       .then((data) => setTodaysComments(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, setTodaysComments]);
+
   async function addAComment(e) {
     e.preventDefault();
     const data = {
       comment: e.target.comment.value,
-      timestamp: new Date(),
+      timestamp: date,
       fakeTimestamp: timestamp,
       name: e.target.name.value,
     };
     if (timeStampTaken.current.includes(data.fakeTimestamp)) {
+      console.log(timeStampTaken.current);
       alert("someone already left a comment at that timestamp rawrXD");
-      return (e.target.comment.value = "");
+      e.target.comment.value = "";
+      e.target.comment.name = "";
+      return false;
     }
     const jsonData = JSON.stringify(data);
     const endpoint = "/api/hello";
@@ -132,10 +146,11 @@ export default function Home({ products }: any) {
       },
     })
       .then((res) => res.json())
-      .then((data) => setComments(() => data));
+      .then((data) => setTodaysComments(() => data));
 
     e.target.comment.value = "";
-    return (e.target.name.value = "");
+    e.target.name.value = "";
+    return result;
   }
   return (
     <>
@@ -196,8 +211,10 @@ export default function Home({ products }: any) {
           <input
             type="date"
             min={"2023-03-28"}
+            max={today}
             onChange={(e) => {
-              setDate(() => new Date(e.target.value));
+              setDate(() => e.target.value);
+              console.log(e.target.value);
             }}
           />
         </div>
@@ -211,7 +228,7 @@ export default function Home({ products }: any) {
           {bars.map((bar, i) => (
             <div
               {...hoverProps}
-              key={i}
+              key={i * 19}
               style={{
                 width: "0.529vw",
                 position: "relative",
@@ -266,6 +283,7 @@ export default function Home({ products }: any) {
                         src={"/westadam.png"}
                         width={10}
                         height={16}
+                        key={k * 0.2}
                         alt="westadam"
                         style={{
                           position: "relative",
@@ -288,7 +306,7 @@ export default function Home({ products }: any) {
                           zIndex: 2000,
                           whiteSpace: "nowrap",
                         }}
-                        key={k}
+                        key={k + 999}
                       >
                         <p
                           style={{
