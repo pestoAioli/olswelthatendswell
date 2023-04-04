@@ -1,3 +1,6 @@
-span {
+.meta-content {
+  display: none;
+}
+slfy-store .meta-content:not(:empty) {
   display: none;
 }
