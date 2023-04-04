@@ -45,6 +45,7 @@ export default function Home({ products }: any) {
   const [width, setWidth] = useState(null);
   const [showComment, setShowComment] = useState<number | null>(null);
   const [comments, setComments] = useState([]);
+  const [updateComments, setUpdateComments] = useState(false);
   const [bars, setBars] = useState(() => {
     const bars = [];
     for (let i = 0; i < 130; i++) {
@@ -107,7 +108,7 @@ export default function Home({ products }: any) {
       .then((res) => res.json())
       .then((data) => setTodaysComments(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [date, setTodaysComments]);
+  }, [date, setTodaysComments, updateComments]);
 
   async function addAComment(e) {
     e.preventDefault();
@@ -140,18 +141,18 @@ export default function Home({ products }: any) {
     // If server returns the name submitted, that means the form works.
     const result = await response.json();
 
-    const poop = fetch("/api/hello", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setTodaysComments(() => data));
+    // const poop = fetch("/api/hello", {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => setTodaysComments(() => data));
 
     e.target.comment.value = "";
     e.target.name.value = "";
-    return result;
+    return setUpdateComments(!updateComments);
   }
   return (
     <>
