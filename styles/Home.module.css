@@ -7,6 +7,6 @@
   transition: 0.6s;
 }
 
-.product * span {
+.product *:not(img) {
   display: hidden;
 }
