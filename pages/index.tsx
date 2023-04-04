@@ -180,6 +180,7 @@ export default function Home({ products }: any) {
         >
           <Image
             src={"/olswellogo.png"}
+            priority
             width={
               width > 800
                 ? width * 0.4 - 150
@@ -234,7 +235,6 @@ export default function Home({ products }: any) {
             height={100}
             allowTransparency={true}
             style={{ border: "none" }}
-            className={styles.product}
           ></iframe>
           <iframe
             src="https://olswel.sellfy.store/embed/product/6HDx/"
@@ -242,7 +242,6 @@ export default function Home({ products }: any) {
             height={100}
             allowTransparency={true}
             style={{ border: "none" }}
-            className={styles.product}
           ></iframe>
           <iframe
             src="https://olswel.sellfy.store/embed/product/hld8in/"
@@ -250,7 +249,6 @@ export default function Home({ products }: any) {
             height={100}
             allowTransparency={true}
             style={{ border: "none" }}
-            className={styles.product}
           ></iframe>
         </div>
         <div
