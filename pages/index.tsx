@@ -6,6 +6,20 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useHover } from "react-aria";
 import moment from "moment";
 import Script from "next/script";
+import Link from "next/link";
+
+enum LINKS {
+  link1 = "https://media.tenor.com/Ag7VvFqfDIIAAAAC/jgc-spongebob.gif",
+  link2 = "https://media.tenor.com/nYvFGxkMAMwAAAAC/dog-walk.gif",
+  link3 = "https://media.discordapp.net/attachments/625161614533853242/924556863708733501/3dgifmaker18738.gif",
+  link4 = "https://media.tenor.com/CkObCaBFiUoAAAAd/monkey-makeup.gif",
+  link5 = "https://media.tenor.com/FfBSz0tmGqsAAAAC/dress-color.gif",
+  link6 = "https://media.tenor.com/USPznVgzIIIAAAAd/cat-dance.gif",
+  link7 = "https://media.discordapp.net/attachments/615515996458844160/1008657331355127808/watermark.gif",
+  link8 = "https://media.tenor.com/bUyhhbdRezIAAAAC/moon-bugman.gif",
+  link9 = "https://media.tenor.com/ss2YVzmsERQAAAAC/noob-banana-dancing.gif",
+  link10 = "https://media.discordapp.net/attachments/615515996458844160/1008657331355127808/watermark.gif",
+}
 
 const gql = String.raw;
 
@@ -45,6 +59,7 @@ export default function Home({ products }: any) {
   const [date, setDate] = useState(today);
   const [width, setWidth] = useState(null);
   const [showComment, setShowComment] = useState<number | null>(null);
+  const [showModal, setShowModal] = useState(false);
   const [comments, setComments] = useState([]);
   const [updateComments, setUpdateComments] = useState(false);
   const [bars, setBars] = useState(() => {
@@ -116,8 +131,9 @@ export default function Home({ products }: any) {
     const data = {
       comment: e.target.comment.value,
       timestamp: date,
-      fakeTimestamp: timestamp,
+      fakeTimestamp: timestamp ? timestamp : randomInteger(1, 60),
       name: e.target.name.value,
+      avatar: e.target.avatar.value ? e.target.avatar.value : null,
     };
     if (timeStampTaken.current.includes(data.fakeTimestamp)) {
       console.log(timeStampTaken.current);
@@ -205,18 +221,19 @@ export default function Home({ products }: any) {
           >
             <h1
               style={{
-                fontSize: 56,
+                fontSize: width < 700 ? 48 : 56,
+                marginBottom: 0,
               }}
             >
               olswel.net
             </h1>
-            <a href="www.soundcloud.com/olswel">www.soundcloud.com</a>
-            <a href="https://open.spotify.com/artist/5aFfTz3PUiklCHbgz2Aylb?si=lkTC6RvfTPaR8oPccJQdYg">
+            <Link href="https://soundcloud.com/olswel">www.soundcloud.com</Link>
+            <Link href="https://open.spotify.com/artist/5aFfTz3PUiklCHbgz2Aylb?si=lkTC6RvfTPaR8oPccJQdYg">
               www.spotify.com
-            </a>
-            <a href="https://www.instagram.com/olswelolswel">
+            </Link>
+            <Link href="https://www.instagram.com/olswelolswel">
               www.instagram.com
-            </a>
+            </Link>
           </div>
         </div>
         {/*shit went here*/}
@@ -224,7 +241,7 @@ export default function Home({ products }: any) {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            gap: 50,
+            gap: "5vw",
             marginTop: 24,
             marginBottom: 24,
           }}
@@ -328,9 +345,13 @@ export default function Home({ products }: any) {
                   <>
                     {i === com.comment?.fakeTimestamp && (
                       <Image
-                        src={"/westadam.png"}
-                        width={10}
-                        height={16}
+                        src={
+                          com.comment?.avatar
+                            ? com.comment.avatar
+                            : "/westadam.png"
+                        }
+                        width={16}
+                        height={24}
                         key={k * 0.2}
                         alt="westadam"
                         style={{
@@ -350,7 +371,7 @@ export default function Home({ products }: any) {
                         style={{
                           display: "flex",
                           position: "relative",
-                          bottom: 10,
+                          bottom: 14,
                           zIndex: 2000,
                           whiteSpace: "nowrap",
                         }}
@@ -383,14 +404,121 @@ export default function Home({ products }: any) {
         <div
           style={{
             marginTop: 20,
+            display: "flex",
           }}
         >
+          <button
+            onClick={() => {
+              setShowModal(!showModal);
+            }}
+          >
+            {showModal ? "close" : "choose yuor avatar"} 🤓
+          </button>
           <form
             className={styles.formForNewSpot}
             onSubmit={addAComment}
             method="post"
             encType="application/json"
           >
+            {showModal ? (
+              <div>
+                <label>
+                  <Image
+                    src="https://media.tenor.com/Ag7VvFqfDIIAAAAC/jgc-spongebob.gif"
+                    alt="spunchbob"
+                    width={40}
+                    height={40}
+                  />
+                </label>
+                <input
+                  type="radio"
+                  name="avatar"
+                  value={LINKS.link1}
+                  required
+                />
+                <label>
+                  <Image
+                    src="https://media.tenor.com/nYvFGxkMAMwAAAAC/dog-walk.gif"
+                    alt="dog"
+                    width={40}
+                    height={40}
+                  />
+                </label>
+                <input type="radio" name="avatar" value={LINKS.link2} />
+                <label>
+                  <Image
+                    src="https://media.discordapp.net/attachments/625161614533853242/924556863708733501/3dgifmaker18738.gif"
+                    alt="dog"
+                    width={40}
+                    height={40}
+                  />
+                </label>
+                <input type="radio" name="avatar" value={LINKS.link3} />
+                <label>
+                  <Image
+                    src="https://media.tenor.com/CkObCaBFiUoAAAAd/monkey-makeup.gif"
+                    alt="dog"
+                    width={40}
+                    height={40}
+                  />
+                </label>
+                <input type="radio" name="avatar" value={LINKS.link4} />
+                <label>
+                  <Image
+                    src="https://media.tenor.com/FfBSz0tmGqsAAAAC/dress-color.gif"
+                    alt="dog"
+                    width={40}
+                    height={40}
+                  />
+                </label>
+                <input type="radio" name="avatar" value={LINKS.link5} />
+                <label>
+                  <Image
+                    src="https://media.tenor.com/USPznVgzIIIAAAAd/cat-dance.gif"
+                    alt="dog"
+                    width={40}
+                    height={40}
+                  />
+                </label>
+                <input type="radio" name="avatar" value={LINKS.link6} />
+                <label>
+                  <Image
+                    src="https://media.discordapp.net/attachments/615515996458844160/1008657331355127808/watermark.gif"
+                    alt="dog"
+                    width={40}
+                    height={40}
+                  />
+                </label>
+                <input type="radio" name="avatar" value={LINKS.link7} />
+                <label>
+                  <Image
+                    src="https://media.tenor.com/bUyhhbdRezIAAAAC/moon-bugman.gif"
+                    alt="dog"
+                    width={40}
+                    height={40}
+                  />
+                </label>
+                <input type="radio" name="avatar" value={LINKS.link8} />
+                <label>
+                  <Image
+                    src="https://media.tenor.com/ss2YVzmsERQAAAAC/noob-banana-dancing.gif"
+                    alt="dog"
+                    width={40}
+                    height={40}
+                  />
+                </label>
+                <input type="radio" name="avatar" value={LINKS.link9} />
+                <label>
+                  <Image
+                    src="https://media.tenor.com/vbERgHqJfKMAAAAd/troll-troll-face.gif"
+                    alt="dog"
+                    width={40}
+                    height={40}
+                  />
+                </label>
+                <input type="radio" name="avatar" value={LINKS.link10} />
+              </div>
+            ) : null}
             <input
               type="text"
               placeholder="yuor name"
