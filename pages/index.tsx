@@ -169,6 +169,7 @@ export default function Home({ products }: any) {
 
     e.target.comment.value = "";
     e.target.name.value = "";
+    setShowModal(false);
     return setUpdateComments(!updateComments);
   }
   return (
