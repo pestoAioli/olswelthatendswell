@@ -443,12 +443,7 @@ export default function Home({ products }: any) {
                     height={40}
                   />
                 </label>
-                <input
-                  type="radio"
-                  name="avatar"
-                  value={LINKS.link1}
-                  required
-                />
+                <input type="radio" name="avatar" value={LINKS.link1} />
                 <label>
                   <Image
                     src="https://media.tenor.com/nYvFGxkMAMwAAAAC/dog-walk.gif"
