@@ -105,9 +105,14 @@ export default function Home({ products }: any) {
     setWidth(() => window.innerWidth);
   }
   useEffect(() => {
-    console.log(today, "today");
+    timeStampTaken.current = comments.map((com) => {
+      return com.comment?.fakeTimestamp;
+    });
+  });
+  useEffect(() => {
+    console.log(timeStampTaken, "today");
     console.log(moment().format());
-    timeStampTaken.current = comments.map((com, i) => {
+    timeStampTaken.current = comments.map((com) => {
       return com.comment?.fakeTimestamp;
     });
     console.log(timeStampTaken.current);
@@ -137,10 +142,10 @@ export default function Home({ products }: any) {
     };
     if (timeStampTaken.current.includes(data.fakeTimestamp)) {
       console.log(timeStampTaken.current);
-      alert("someone already left a comment at that timestamp rawrXD");
+
       e.target.comment.value = "";
       e.target.comment.name = "";
-      return false;
+      return alert("someone already left a comment at that timestamp rawrXD");
     }
     const jsonData = JSON.stringify(data);
     const endpoint = "/api/hello";
@@ -170,7 +175,8 @@ export default function Home({ products }: any) {
     e.target.comment.value = "";
     e.target.name.value = "";
     setShowModal(false);
-    return setUpdateComments(!updateComments);
+    setUpdateComments(!updateComments);
+    return result;
   }
   return (
     <>
