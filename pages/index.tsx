@@ -184,6 +184,14 @@ export default function Home({ products }: any) {
         <title>olswel (╬ ಠ益ಠ)</title>
         <meta name="description" content="olswel" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:site_name" content="olswel" />
+        <meta property="og:description" content="olswel" />
+        <meta
+          content="olswel, record, sounds, share, sound, audio, tracks, music, soundcloud, soundcloudhero, hero"
+          name="keywords"
+        />
+        <meta property="og:url" content="https://www.olswel.net" />
+        <meta property="og:image" content="/olswellogo.png" />
         <link rel="icon" href="/olswellogo.png" />
       </Head>
       <Script src="https://sellfy.com/js/api_buttons.js%22%3E" />
