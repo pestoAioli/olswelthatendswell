@@ -62,6 +62,7 @@ export default function Home({ products }: any) {
   const [showModal, setShowModal] = useState(false);
   const [comments, setComments] = useState([]);
   const [updateComments, setUpdateComments] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const [bars, setBars] = useState(() => {
     const bars = [];
     for (let i = 0; i < 130; i++) {
@@ -133,6 +134,7 @@ export default function Home({ products }: any) {
 
   async function addAComment(e) {
     e.preventDefault();
+    setDisabled(true);
     const data = {
       comment: e.target.comment.value,
       timestamp: date,
@@ -176,6 +178,9 @@ export default function Home({ products }: any) {
     e.target.name.value = "";
     setShowModal(false);
     setUpdateComments(!updateComments);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 2000);
     return result;
   }
   return (
@@ -553,7 +558,9 @@ export default function Home({ products }: any) {
               }}
               required
             />
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={disabled}>
+              Submit
+            </button>
           </form>
         </div>
       </main>
