@@ -196,15 +196,15 @@ export default function Home({ products }: any) {
                 width > 800
                   ? width * 0.4 - 150
                   : width < 700
-                  ? width * 0.8 - 150
-                  : width * 0.5 - 150
+                    ? width * 0.8 - 150
+                    : width * 0.5 - 150
               }
               height={
                 width > 800
                   ? width * 0.4 - 150
                   : width < 700
-                  ? width * 0.8 - 150
-                  : width * 0.5 - 150
+                    ? width * 0.8 - 150
+                    : width * 0.5 - 150
               }
               alt="olswel"
             />
@@ -234,6 +234,17 @@ export default function Home({ products }: any) {
             </div>
           </div>
           {/*shit went here*/}
+          <div>
+            <iframe
+              src="https://olswel.sellfy.store/embed/product/ec321b/"
+              style={{
+                border: "none",
+                overflow: "hidden",
+                height: 500,
+                width: 500,
+              }}
+            ></iframe>
+          </div>
           <div
             style={{
               display: "flex",
@@ -248,7 +259,7 @@ export default function Home({ products }: any) {
               style={{
                 border: "none",
                 overflow: "hidden",
-                height: 100,
+                height: 200,
                 width: 100,
               }}
             ></iframe>
@@ -257,7 +268,7 @@ export default function Home({ products }: any) {
               style={{
                 border: "none",
                 overflow: "hidden",
-                height: 100,
+                height: 200,
                 width: 100,
               }}
             ></iframe>
@@ -266,7 +277,7 @@ export default function Home({ products }: any) {
               style={{
                 border: "none",
                 overflow: "hidden",
-                height: 100,
+                height: 200,
                 width: 100,
               }}
             ></iframe>
@@ -307,8 +318,8 @@ export default function Home({ products }: any) {
                     timestamp !== null && i <= timestamp
                       ? "orange"
                       : isHovered
-                      ? "grey"
-                      : "darkgray",
+                        ? "grey"
+                        : "darkgray",
                   transition: "0.5s",
                 }}
                 onClick={() => {
@@ -367,9 +378,9 @@ export default function Home({ products }: any) {
                       )}
                       {(i === com.comment?.fakeTimestamp &&
                         showComment === com.comment?.fakeTimestamp) ||
-                      (i === com.comment?.fakeTimestamp &&
-                        i === timestamp &&
-                        !showComment) ? (
+                        (i === com.comment?.fakeTimestamp &&
+                          i === timestamp &&
+                          !showComment) ? (
                         <div
                           style={{
                             display: "flex",
