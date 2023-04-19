@@ -180,6 +180,7 @@ export default function Home({ products }: any) {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            margin: "0 auto",
           }}
         >
           <div
@@ -317,9 +318,11 @@ export default function Home({ products }: any) {
                   backgroundColor:
                     timestamp !== null && i <= timestamp
                       ? "orange"
-                      : isHovered
-                        ? "grey"
-                        : "darkgray",
+                      : isHovered && timestamp !== null && i <= timestamp
+                        ? "orange"
+                        : isHovered
+                          ? "darkgray"
+                          : "grey",
                   transition: "0.5s",
                 }}
                 onClick={() => {
