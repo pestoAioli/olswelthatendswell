@@ -27,6 +27,7 @@ function randomInteger(min: number, max: number) {
 const today = moment().format().slice(0, 10);
 export default function Home({ products }: any) {
   const { hoverProps, isHovered } = useHover({});
+  const elementRef = useRef(null);
   const [timestamp, setTimestamp] = useState(null);
   const [date, setDate] = useState(today);
   const [width, setWidth] = useState(null);
@@ -82,6 +83,14 @@ export default function Home({ products }: any) {
       return com.comment?.fakeTimestamp;
     });
   });
+  useEffect(() => {
+    if (elementRef.current) {
+      console.log(elementRef, "woooooorking");
+      elementRef.current.scrollLeft = 0;
+    } else {
+      console.log(elementRef, "noooot work");
+    }
+  }, [width]);
   useEffect(() => {
     console.log(timeStampTaken, "today");
     console.log(moment().format());
@@ -181,6 +190,7 @@ export default function Home({ products }: any) {
             flexDirection: "column",
             alignItems: "center",
           }}
+          ref={elementRef}
         >
           <div
             style={{
@@ -196,15 +206,15 @@ export default function Home({ products }: any) {
                 width > 800
                   ? width * 0.4 - 150
                   : width < 700
-                  ? width * 0.8 - 150
-                  : width * 0.5 - 150
+                    ? width * 0.8 - 150
+                    : width * 0.5 - 150
               }
               height={
                 width > 800
                   ? width * 0.4 - 150
                   : width < 700
-                  ? width * 0.8 - 150
-                  : width * 0.5 - 150
+                    ? width * 0.8 - 150
+                    : width * 0.5 - 150
               }
               alt="olswel"
             />
@@ -318,10 +328,10 @@ export default function Home({ products }: any) {
                     timestamp !== null && i <= timestamp
                       ? "orange"
                       : isHovered && timestamp !== null && i <= timestamp
-                      ? "orange"
-                      : isHovered
-                      ? "darkgray"
-                      : "grey",
+                        ? "orange"
+                        : isHovered
+                          ? "darkgray"
+                          : "grey",
                   transition: "0.5s",
                 }}
                 onClick={() => {
@@ -380,9 +390,9 @@ export default function Home({ products }: any) {
                       )}
                       {(i === com.comment?.fakeTimestamp &&
                         showComment === com.comment?.fakeTimestamp) ||
-                      (i === com.comment?.fakeTimestamp &&
-                        i === timestamp &&
-                        !showComment) ? (
+                        (i === com.comment?.fakeTimestamp &&
+                          i === timestamp &&
+                          !showComment) ? (
                         <div
                           style={{
                             display: "flex",
