@@ -7,6 +7,7 @@ slfy-store .meta-content:not(:empty) {
 html,
 body {
   overflow-x: hidden;
+  overflow-y: auto;
 }
 body {
   position: relative;
