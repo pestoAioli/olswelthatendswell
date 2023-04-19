@@ -189,6 +189,7 @@ export default function Home({ products }: any) {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            overflowX: "hidden",
           }}
           ref={elementRef}
         >
