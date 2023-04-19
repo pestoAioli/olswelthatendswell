@@ -4,7 +4,10 @@
 slfy-store .meta-content:not(:empty) {
   display: none;
 }
-
+html,
 body {
   overflow-x: hidden;
+}
+body {
+  position: relative;
 }
