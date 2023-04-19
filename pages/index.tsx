@@ -83,14 +83,14 @@ export default function Home({ products }: any) {
       return com.comment?.fakeTimestamp;
     });
   });
-  useEffect(() => {
-    if (elementRef.current) {
-      console.log(elementRef, "woooooorking");
-      elementRef.current.scrollLeft = 0;
-    } else {
-      console.log(elementRef, "noooot work");
-    }
-  }, [width]);
+  // useEffect(() => {
+  //   if (elementRef.current) {
+  //     console.log(elementRef, "woooooorking");
+  //     elementRef.current.scrollLeft = 0;
+  //   } else {
+  //     console.log(elementRef, "noooot work");
+  //   }
+  // }, [width]);
   useEffect(() => {
     console.log(timeStampTaken, "today");
     console.log(moment().format());
