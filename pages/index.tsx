@@ -245,15 +245,7 @@ export default function Home({ products }: any) {
           </div>
           {/*shit went here*/}
           <div>
-            <iframe
-              src="https://olswel.sellfy.store/embed/product/ec321b/"
-              style={{
-                border: "none",
-                overflow: "hidden",
-                height: 500,
-                width: 500,
-              }}
-            ></iframe>
+
           </div>
           <div
             style={{
@@ -268,9 +260,9 @@ export default function Home({ products }: any) {
               src="https://olswel.sellfy.store/embed/product/dfihld/"
               style={{
                 border: "none",
-                overflow: "hidden",
-                height: 200,
-                width: 100,
+                overflowY: "hidden",
+                fontSize: "12px",
+                width: 105,
               }}
             ></iframe>
             <iframe
@@ -278,8 +270,8 @@ export default function Home({ products }: any) {
               style={{
                 border: "none",
                 overflow: "hidden",
-                height: 200,
-                width: 100,
+
+                width: 105,
               }}
             ></iframe>
             <iframe
@@ -288,7 +280,7 @@ export default function Home({ products }: any) {
                 border: "none",
                 overflow: "hidden",
                 height: 200,
-                width: 100,
+                width: 105,
               }}
             ></iframe>
           </div>
@@ -310,7 +302,7 @@ export default function Home({ products }: any) {
           <div
             style={{
               display: "flex",
-              gap: 0.5,
+              gap: 1,
             }}
             className={styles.pee}
           >
@@ -344,7 +336,7 @@ export default function Home({ products }: any) {
           <div
             style={{
               display: "flex",
-              gap: 0.5,
+              gap: 1,
               marginTop: 1,
             }}
           >
