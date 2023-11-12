@@ -479,6 +479,7 @@ export default function Home({ products }: any) {
                     display: "flex",
                     flexDirection: "column",
                     width: 40,
+                    marginBottom: "6px"
                   }}>
                     <label>
                       <Image
