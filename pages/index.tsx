@@ -633,6 +633,7 @@ export default function Home({ products }: any) {
                 id="name"
                 name="name"
                 maxLength={14}
+                required
               />
               <input
                 type="text"
