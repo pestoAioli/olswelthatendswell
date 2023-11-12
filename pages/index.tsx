@@ -241,6 +241,14 @@ export default function Home({ products }: any) {
               <Link href="https://www.instagram.com/olswelolswel">
                 www.instagram.com
               </Link>
+              <iframe src="https://olswel.sellfy.store/embed/product/bulyuz/" style={{
+                border: "none",
+                overflowY: "hidden",
+                fontSize: "12px",
+                height: 500,
+                marginTop: 12,
+              }}
+              ></iframe>
             </div>
           </div>
           {/*shit went here*/}
@@ -252,7 +260,6 @@ export default function Home({ products }: any) {
               display: "flex",
               justifyContent: "space-between",
               gap: "5vw",
-              marginTop: 24,
               marginBottom: 24,
             }}
           >
