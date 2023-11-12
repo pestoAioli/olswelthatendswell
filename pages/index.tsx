@@ -197,7 +197,6 @@ export default function Home({ products }: any) {
               marginTop: 24,
               display: "flex",
               flexDirection: "column",
-              marginRight: 50,
             }}
           >
             <div
