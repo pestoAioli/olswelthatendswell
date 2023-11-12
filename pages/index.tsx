@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@component/styles/Home.module.css";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useHover } from "react-aria";
 import moment from "moment";
 import Script from "next/script";
@@ -196,59 +196,87 @@ export default function Home({ products }: any) {
             style={{
               marginTop: 24,
               display: "flex",
+              flexDirection: "column",
               marginRight: 50,
             }}
           >
-            <Image
-              src={"/olswellogo.png"}
-              priority
-              width={
-                width > 800
-                  ? width * 0.4 - 150
-                  : width < 700
-                    ? width * 0.8 - 150
-                    : width * 0.5 - 150
-              }
-              height={
-                width > 800
-                  ? width * 0.4 - 150
-                  : width < 700
-                    ? width * 0.8 - 150
-                    : width * 0.5 - 150
-              }
-              alt="olswel"
-            />
             <div
               style={{
                 display: "flex",
                 flexDirection: "column",
               }}
             >
-              <h1
-                style={{
-                  fontSize: width < 700 ? 48 : 56,
-                  marginBottom: 0,
+              <div style={{
+                display: "flex",
+              }}>
+                <Image
+                  src={"/olswellogo.png"}
+                  priority
+                  width={
+                    width > 800
+                      ? width * 0.4 - 150
+                      : width < 700
+                        ? width * 0.8 - 150
+                        : width * 0.5 - 150
+                  }
+                  height={
+                    width > 800
+                      ? width * 0.4 - 150
+                      : width < 700
+                        ? width * 0.8 - 150
+                        : width * 0.5 - 150
+                  }
+                  alt="olswel"
+                />
+                <div style={{
+                  marginTop: 24,
+                  display: "flex",
+                  flexDirection: "column",
                 }}
-              >
-                olswel.net
-              </h1>
-              <Link href="https://soundcloud.com/olswel">
-                www.soundcloud.com
-              </Link>
-              <Link href="https://open.spotify.com/artist/5aFfTz3PUiklCHbgz2Aylb?si=lkTC6RvfTPaR8oPccJQdYg">
-                www.spotify.com
-              </Link>
-              <Link href="https://www.instagram.com/olswelolswel">
-                www.instagram.com
-              </Link>
-              <iframe src="https://olswel.sellfy.store/embed/product/bulyuz/" style={{
-                border: "none",
-                overflowY: "hidden",
-                fontSize: "12px",
-                height: 500,
-                marginTop: 12,
-              }}
-              ></iframe>
+                >
+                  <h1
+                    style={{
+                      fontSize: width < 700 ? 48 : 56,
+                      marginBottom: 0,
+                    }}
+                  >
+                    olswel.net
+                  </h1>
+                  <Link href="https://soundcloud.com/olswel">
+                    www.soundcloud.com
+                  </Link>
+                  <Link href="https://open.spotify.com/artist/5aFfTz3PUiklCHbgz2Aylb?si=lkTC6RvfTPaR8oPccJQdYg">
+                    www.spotify.com
+                  </Link>
+                  <Link href="https://www.instagram.com/olswelolswel">
+                    www.instagram.com
+                  </Link>
+                  {width > 700 ?
+                    <iframe src="https://olswel.sellfy.store/embed/product/bulyuz/" style={{
+                      border: "none",
+                      overflowY: "hidden",
+                      fontSize: "12px",
+                      height: 500,
+                      marginTop: 12,
+                      marginBottom: "-30px"
+                    }}
+                    ></iframe>
+                    : null
+                  }
+                </div>
+              </div>
+              {width < 700 ?
+                <iframe src="https://olswel.sellfy.store/embed/product/bulyuz/" style={{
+                  border: "none",
+                  overflowY: "hidden",
+                  fontSize: "12px",
+                  height: 500,
+                  marginTop: 12,
+                  marginBottom: "-30px"
+                }}
+                ></iframe>
+                : null
+              }
             </div>
           </div>
           {/*shit went here*/}
@@ -446,97 +474,157 @@ export default function Home({ products }: any) {
               encType="application/json"
             >
               {showModal ? (
-                <div>
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/Ag7VvFqfDIIAAAAC/jgc-spongebob.gif"
-                      alt="spunchbob"
-                      width={40}
-                      height={40}
-                    />
-                  </label>
-                  <input type="radio" name="avatar" value={LINKS.link1} />
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/nYvFGxkMAMwAAAAC/dog-walk.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                    />
-                  </label>
-                  <input type="radio" name="avatar" value={LINKS.link2} />
-                  <label>
-                    <Image
-                      src="https://media.discordapp.net/attachments/625161614533853242/924556863708733501/3dgifmaker18738.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                    />
-                  </label>
-                  <input type="radio" name="avatar" value={LINKS.link3} />
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/CkObCaBFiUoAAAAd/monkey-makeup.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                    />
-                  </label>
-                  <input type="radio" name="avatar" value={LINKS.link4} />
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/FfBSz0tmGqsAAAAC/dress-color.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                    />
-                  </label>
-                  <input type="radio" name="avatar" value={LINKS.link5} />
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/USPznVgzIIIAAAAd/cat-dance.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                    />
-                  </label>
-                  <input type="radio" name="avatar" value={LINKS.link6} />
-                  <label>
-                    <Image
-                      src="https://media.discordapp.net/attachments/615515996458844160/1008657331355127808/watermark.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                    />
-                  </label>
-                  <input type="radio" name="avatar" value={LINKS.link7} />
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/bUyhhbdRezIAAAAC/moon-bugman.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                    />
-                  </label>
-                  <input type="radio" name="avatar" value={LINKS.link8} />
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/ss2YVzmsERQAAAAC/noob-banana-dancing.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                    />
-                  </label>
-                  <input type="radio" name="avatar" value={LINKS.link9} />
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/vbERgHqJfKMAAAAd/troll-troll-face.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                    />
-                  </label>
-                  <input type="radio" name="avatar" value={LINKS.link10} />
+                <div style={{ display: "flex", justifyContent: "space-evenly", flexWrap: "wrap" }}>
+                  <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: 40,
+                  }}>
+                    <label>
+                      <Image
+                        src="https://media.tenor.com/Ag7VvFqfDIIAAAAC/jgc-spongebob.gif"
+                        alt="spunchbob"
+                        width={40}
+                        height={40}
+                      />
+                    </label>
+                    <input type="radio" name="avatar" value={LINKS.link1} />
+                  </div>
+                  <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: 40,
+                  }}>
+                    <label>
+                      <Image
+                        src="https://media.tenor.com/nYvFGxkMAMwAAAAC/dog-walk.gif"
+                        alt="dog"
+                        width={40}
+                        height={40}
+                      />
+                    </label>
+                    <input type="radio" name="avatar" value={LINKS.link2} />
+                  </div>
+                  <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: 40,
+                  }}>
+                    <label>
+                      <Image
+                        src="https://media.discordapp.net/attachments/625161614533853242/924556863708733501/3dgifmaker18738.gif"
+                        alt="dog"
+                        width={40}
+                        height={40}
+                      />
+                    </label>
+                    <input type="radio" name="avatar" value={LINKS.link3} />
+                  </div>
+                  <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: 40,
+                  }}>
+                    <label>
+                      <Image
+                        src="https://media.tenor.com/CkObCaBFiUoAAAAd/monkey-makeup.gif"
+                        alt="dog"
+                        width={40}
+                        height={40}
+                      />
+                    </label>
+                    <input type="radio" name="avatar" value={LINKS.link4} />
+                  </div>
+                  <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: 40,
+                  }}>
+                    <label>
+                      <Image
+                        src="https://media.tenor.com/FfBSz0tmGqsAAAAC/dress-color.gif"
+                        alt="dog"
+                        width={40}
+                        height={40}
+                      />
+                    </label>
+                    <input type="radio" name="avatar" value={LINKS.link5} />
+                  </div>
+                  <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: 40,
+                  }}>
+                    <label>
+                      <Image
+                        src="https://media.tenor.com/USPznVgzIIIAAAAd/cat-dance.gif"
+                        alt="dog"
+                        width={40}
+                        height={40}
+                      />
+                    </label>
+                    <input type="radio" name="avatar" value={LINKS.link6} />
+                  </div>
+                  <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: 40,
+                  }}>
+                    <label>
+                      <Image
+                        src="https://media.discordapp.net/attachments/615515996458844160/1008657331355127808/watermark.gif"
+                        alt="dog"
+                        width={40}
+                        height={40}
+                      />
+                    </label>
+                    <input type="radio" name="avatar" value={LINKS.link7} />
+                  </div>
+                  <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: 40,
+                  }}>
+                    <label>
+                      <Image
+                        src="https://media.tenor.com/bUyhhbdRezIAAAAC/moon-bugman.gif"
+                        alt="dog"
+                        width={40}
+                        height={40}
+                      />
+                    </label>
+                    <input type="radio" name="avatar" value={LINKS.link8} />
+                  </div>
+                  <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: 40,
+                  }}>
+                    <label>
+                      <Image
+                        src="https://media.tenor.com/ss2YVzmsERQAAAAC/noob-banana-dancing.gif"
+                        alt="dog"
+                        width={40}
+                        height={40}
+                      />
+                    </label>
+                    <input type="radio" name="avatar" value={LINKS.link9} />
+                  </div>
+                  <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: 40,
+                  }}>
+                    <label>
+                      <Image
+                        src="https://media.tenor.com/vbERgHqJfKMAAAAd/troll-troll-face.gif"
+                        alt="dog"
+                        width={40}
+                        height={40}
+                      />
+                    </label>
+                    <input type="radio" name="avatar" value={LINKS.link10} />
+                  </div>
                 </div>
               ) : null}
               <input
