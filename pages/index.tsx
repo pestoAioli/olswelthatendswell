@@ -426,7 +426,7 @@ export default function Home({ products }: any) {
                             position: "relative",
                             right: 3,
                             bottom: 0,
-                            zIndex: 2005,
+                            zIndex: 12005,
                           }}
                         />
                       )}
