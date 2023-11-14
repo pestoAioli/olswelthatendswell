@@ -4,4 +4,8 @@
 slfy-store .meta-content:not(:empty) {
   display: none;
 }
-
+[type=radio] { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
