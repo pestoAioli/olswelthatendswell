@@ -296,6 +296,7 @@ export default function Home({ products }: any) {
                 border: "none",
                 overflowY: "hidden",
                 fontSize: "12px",
+                height: 250,
                 width: 105,
               }}
             ></iframe>
@@ -304,7 +305,7 @@ export default function Home({ products }: any) {
               style={{
                 border: "none",
                 overflow: "hidden",
-
+                height: 250,
                 width: 105,
               }}
             ></iframe>
