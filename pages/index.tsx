@@ -36,6 +36,7 @@ export default function Home({ products }: any) {
   const [comments, setComments] = useState([]);
   const [updateComments, setUpdateComments] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [picId, setPicId] = useState('');
   const [bars, setBars] = useState(() => {
     const bars = [];
     for (let i = 0; i < 130; i++) {
@@ -112,6 +113,20 @@ export default function Home({ products }: any) {
       .then((data) => setTodaysComments(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, setTodaysComments, updateComments]);
+
+  function clearPreviousImageStyles() {
+    const images = document.querySelectorAll('img');
+    for (const image of images) {
+      image.removeAttribute('style');
+    }
+  }
+
+  useEffect(() => {
+    if (document.getElementById(picId) != null) {
+      document.getElementById(picId).style.setProperty("border", "2px solid red")
+      console.log(picId)
+    }
+  }, [picId])
 
   async function addAComment(e) {
     e.preventDefault();
@@ -475,157 +490,146 @@ export default function Home({ products }: any) {
             >
               {showModal ? (
                 <div style={{ display: "flex", justifyContent: "space-evenly", flexWrap: "wrap" }}>
-                  <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: 40,
-                    marginBottom: "6px"
-                  }}>
-                    <label>
-                      <Image
-                        src="https://media.tenor.com/Ag7VvFqfDIIAAAAC/jgc-spongebob.gif"
-                        alt="spunchbob"
-                        width={40}
-                        height={40}
-                      />
-                    </label>
+                  <label>
+                    <Image
+                      src="https://media.tenor.com/Ag7VvFqfDIIAAAAC/jgc-spongebob.gif"
+                      alt="spunchbob"
+                      width={40}
+                      height={40}
+                      id="1"
+                      onClick={() => {
+                        clearPreviousImageStyles();
+                        setPicId("1")
+                      }}
+                    />
                     <input type="radio" name="avatar" value={LINKS.link1} />
-                  </div>
-                  <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: 40,
-                  }}>
-                    <label>
-                      <Image
-                        src="https://media.tenor.com/nYvFGxkMAMwAAAAC/dog-walk.gif"
-                        alt="dog"
-                        width={40}
-                        height={40}
-                      />
-                    </label>
+                  </label>
+                  <label>
+                    <Image
+                      src="https://media.tenor.com/nYvFGxkMAMwAAAAC/dog-walk.gif"
+                      alt="dog"
+                      width={40}
+                      height={40}
+                      id="2"
+                      onClick={() => {
+                        clearPreviousImageStyles();
+                        setPicId("2")
+                      }}
+                    />
                     <input type="radio" name="avatar" value={LINKS.link2} />
-                  </div>
-                  <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: 40,
-                  }}>
-                    <label>
-                      <Image
-                        src="https://media.discordapp.net/attachments/625161614533853242/924556863708733501/3dgifmaker18738.gif"
-                        alt="dog"
-                        width={40}
-                        height={40}
-                      />
-                    </label>
+                  </label>
+                  <label>
+                    <Image
+                      src="https://media.discordapp.net/attachments/625161614533853242/924556863708733501/3dgifmaker18738.gif"
+                      alt="dog"
+                      width={40}
+                      height={40}
+                      id="3"
+                      onClick={() => {
+                        clearPreviousImageStyles();
+                        setPicId("3")
+                      }}
+                    />
                     <input type="radio" name="avatar" value={LINKS.link3} />
-                  </div>
-                  <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: 40,
-                  }}>
-                    <label>
-                      <Image
-                        src="https://media.tenor.com/CkObCaBFiUoAAAAd/monkey-makeup.gif"
-                        alt="dog"
-                        width={40}
-                        height={40}
-                      />
-                    </label>
+                  </label>
+                  <label>
+                    <Image
+                      src="https://media.tenor.com/CkObCaBFiUoAAAAd/monkey-makeup.gif"
+                      alt="dog"
+                      width={40}
+                      height={40}
+                      id="4"
+                      onClick={() => {
+                        clearPreviousImageStyles();
+                        setPicId("4")
+                      }}
+                    />
                     <input type="radio" name="avatar" value={LINKS.link4} />
-                  </div>
-                  <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: 40,
-                  }}>
-                    <label>
-                      <Image
-                        src="https://media.tenor.com/FfBSz0tmGqsAAAAC/dress-color.gif"
-                        alt="dog"
-                        width={40}
-                        height={40}
-                      />
-                    </label>
+                  </label>
+                  <label>
+                    <Image
+                      src="https://media.tenor.com/FfBSz0tmGqsAAAAC/dress-color.gif"
+                      alt="dog"
+                      width={40}
+                      height={40}
+                      id="5"
+                      onClick={() => {
+                        clearPreviousImageStyles();
+                        setPicId("5")
+                      }}
+                    />
                     <input type="radio" name="avatar" value={LINKS.link5} />
-                  </div>
-                  <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: 40,
-                  }}>
-                    <label>
-                      <Image
-                        src="https://media.tenor.com/USPznVgzIIIAAAAd/cat-dance.gif"
-                        alt="dog"
-                        width={40}
-                        height={40}
-                      />
-                    </label>
+                  </label>
+                  <label>
+                    <Image
+                      src="https://media.tenor.com/USPznVgzIIIAAAAd/cat-dance.gif"
+                      alt="dog"
+                      width={40}
+                      height={40}
+                      id="6"
+                      onClick={() => {
+                        clearPreviousImageStyles();
+                        setPicId("6")
+                      }}
+                    />
                     <input type="radio" name="avatar" value={LINKS.link6} />
-                  </div>
-                  <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: 40,
-                  }}>
-                    <label>
-                      <Image
-                        src="https://media.discordapp.net/attachments/615515996458844160/1008657331355127808/watermark.gif"
-                        alt="dog"
-                        width={40}
-                        height={40}
-                      />
-                    </label>
+                  </label>
+                  <label>
+                    <Image
+                      src="https://media.discordapp.net/attachments/615515996458844160/1008657331355127808/watermark.gif"
+                      alt="dog"
+                      width={40}
+                      height={40}
+                      id="7"
+                      onClick={() => {
+                        clearPreviousImageStyles();
+                        setPicId("7")
+                      }}
+                    />
                     <input type="radio" name="avatar" value={LINKS.link7} />
-                  </div>
-                  <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: 40,
-                  }}>
-                    <label>
-                      <Image
-                        src="https://media.tenor.com/bUyhhbdRezIAAAAC/moon-bugman.gif"
-                        alt="dog"
-                        width={40}
-                        height={40}
-                      />
-                    </label>
+                  </label>
+                  <label>
+                    <Image
+                      src="https://media.tenor.com/bUyhhbdRezIAAAAC/moon-bugman.gif"
+                      alt="dog"
+                      width={40}
+                      height={40}
+                      id="8"
+                      onClick={() => {
+                        clearPreviousImageStyles();
+                        setPicId("8")
+                      }}
+                    />
                     <input type="radio" name="avatar" value={LINKS.link8} />
-                  </div>
-                  <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: 40,
-                  }}>
-                    <label>
-                      <Image
-                        src="https://media.tenor.com/ss2YVzmsERQAAAAC/noob-banana-dancing.gif"
-                        alt="dog"
-                        width={40}
-                        height={40}
-                      />
-                    </label>
+                  </label>
+                  <label>
+                    <Image
+                      src="https://media.tenor.com/ss2YVzmsERQAAAAC/noob-banana-dancing.gif"
+                      alt="dog"
+                      width={40}
+                      height={40}
+                      id="9"
+                      onClick={() => {
+                        clearPreviousImageStyles();
+                        setPicId("9")
+                      }}
+                    />
                     <input type="radio" name="avatar" value={LINKS.link9} />
-                  </div>
-                  <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: 40,
-                  }}>
-                    <label>
-                      <Image
-                        src="https://media.tenor.com/vbERgHqJfKMAAAAd/troll-troll-face.gif"
-                        alt="dog"
-                        width={40}
-                        height={40}
-                      />
-                    </label>
+                  </label>
+                  <label>
+                    <Image
+                      src="https://media.tenor.com/vbERgHqJfKMAAAAd/troll-troll-face.gif"
+                      alt="dog"
+                      width={40}
+                      height={40}
+                      id="10"
+                      onClick={() => {
+                        clearPreviousImageStyles();
+                        setPicId("10")
+                      }}
+                    />
                     <input type="radio" name="avatar" value={LINKS.link10} />
-                  </div>
+                  </label>
                 </div>
               ) : null}
               <input
