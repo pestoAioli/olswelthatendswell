@@ -39,14 +39,14 @@ export default function Home({ products }: any) {
   const [picId, setPicId] = useState('');
   const [bars, setBars] = useState(() => {
     const bars = [];
-    for (let i = 0; i < 130; i++) {
+    for (let i = 0; i < 190; i++) {
       bars.push(randomInteger(30, 60));
     }
     return bars;
   });
   const [smolBars, setSmolBars] = useState(() => {
     const bars = [];
-    for (let i = 0; i < 130; i++) {
+    for (let i = 0; i < 190; i++) {
       bars.push(randomInteger(1, 30));
     }
     return bars;
@@ -93,6 +93,33 @@ export default function Home({ products }: any) {
   //   }
   // }, [width]);
   useEffect(() => {
+    setComments([{
+      comment: {
+        name: 'bob',
+        fakeTimestamp: 8,
+        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+      }
+    },
+    {
+      comment: {
+        name: 'bob',
+        fakeTimestamp: 28,
+        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+      }
+    },
+    {
+      comment: {
+        name: 'bob',
+        fakeTimestamp: 18,
+        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+      }
+    }, {
+      comment: {
+        name: 'bob',
+        fakeTimestamp: 150,
+        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+      }
+    }])
     console.log(timeStampTaken, "today");
     console.log(moment().format());
     timeStampTaken.current = comments.map((com) => {
@@ -361,7 +388,7 @@ export default function Home({ products }: any) {
                 {...hoverProps}
                 key={i * 19}
                 style={{
-                  width: "0.529vw",
+                  width: "0.29vw",
                   position: "relative",
                   cursor: "pointer",
                   marginTop: bar,
@@ -395,7 +422,7 @@ export default function Home({ products }: any) {
                 key={i}
                 className={styles.poop}
                 style={{
-                  width: "0.529vw",
+                  width: "0.29vw",
                   position: "relative",
                   height: bar,
                   backgroundColor: showComment === i ? "grey" : "darkgrey",
@@ -437,31 +464,30 @@ export default function Home({ products }: any) {
                           !showComment) ? (
                         <div
                           style={{
-                            display: "flex",
                             position: "relative",
-                            bottom: 14,
                             zIndex: 2000,
-                            whiteSpace: "nowrap",
                           }}
                           key={k + 999}
                         >
-                          <p
-                            style={{
-                              color: "orange",
-                              display: "inline-block",
-                            }}
-                          >
-                            {com.comment?.name}
-                          </p>
-                          <p
-                            style={{
-                              display: "inline-block",
-                            }}
-                          >
-                            {com.comment?.name ? ": " : ""}
-                            {com.comment?.comment}
-                          </p>
-                        </div>
+                          {i < 100 ? (
+                            <span style={{
+                              display: "block",
+                              width: "100px",
+                              overflow: "hidden",
+                              whiteSpace: "nowrap",
+                              textOverflow: "ellipsis",
+                            }}>{com.comment?.name}{" "}<span>{com.comment?.comment}</span></span>
+                          ) : (
+                            <>
+                              <span style={{
+                                display: "block",
+                                width: "100px",
+                                overflow: "hidden",
+                                whiteSpace: "nowrap",
+                                textOverflow: "ellipsis",
+                              }}>{com.comment?.comment}{" "}</span><span>{com.comment?.name}</span>
+                            </>)}
+                        </div >
                       ) : null}
                     </>
                   ))}
@@ -656,7 +682,7 @@ export default function Home({ products }: any) {
               </button>
             </form>
           </div>
-        </main>
+        </main >
       </>
     );
   }
