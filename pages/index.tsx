@@ -93,40 +93,40 @@ export default function Home({ products }: any) {
   //   }
   // }, [width]);
   useEffect(() => {
-    setComments([{
-      comment: {
-        name: 'bob',
-        fakeTimestamp: 8,
-        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
-      }
-    },
-    {
-      comment: {
-        name: 'bob',
-        fakeTimestamp: 28,
-        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
-      }
-    },
-    {
-      comment: {
-        name: 'bob',
-        fakeTimestamp: 18,
-        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
-      }
-    }, {
-      comment: {
-        name: 'bob',
-        fakeTimestamp: 150,
-        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
-      }
-    }, {
-      comment: {
-        name: 'bob',
-        fakeTimestamp: 180,
-        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
-      }
-    }])
-    console.log(timeStampTaken, "today");
+    // setComments([{
+    //   comment: {
+    //     name: 'bob',
+    //     fakeTimestamp: 8,
+    //     comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+    //   }
+    // },
+    // {
+    //   comment: {
+    //     name: 'bob',
+    //     fakeTimestamp: 28,
+    //     comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+    //   }
+    // },
+    // {
+    //   comment: {
+    //     name: 'bob',
+    //     fakeTimestamp: 18,
+    //     comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+    //   }
+    // }, {
+    //   comment: {
+    //     name: 'bob',
+    //     fakeTimestamp: 150,
+    //     comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+    //   }
+    // }, {
+    //   comment: {
+    //     name: 'bob',
+    //     fakeTimestamp: 180,
+    //     comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+    //   }
+    // }])
+    // console.log(timeStampTaken, "today");
     console.log(moment().format());
     timeStampTaken.current = comments.map((com) => {
       return com.comment?.fakeTimestamp;
@@ -136,15 +136,15 @@ export default function Home({ products }: any) {
     setWidth(() => window.innerWidth);
     console.log(Date.parse(today.toLocaleString().slice(0, 8)));
     window.addEventListener("resize", handleResize);
-    // const poop = fetch("/api/hello", {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => setTodaysComments(data));
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    const poop = fetch("/api/hello", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setTodaysComments(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, setTodaysComments, updateComments]);
 
   function clearPreviousImageStyles() {
