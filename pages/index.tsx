@@ -410,7 +410,7 @@ export default function Home({ products }: any) {
                   backgroundColor:
                     isHovered && hoverer && i >= Number(hoverer) && i <= timestamp
                       ? "orange"
-                      : isHovered && hoverer && i <= Number(hoverer) && i <= timestamp
+                      : timestamp !== null && isHovered && hoverer && i <= Number(hoverer) && i <= timestamp
                         ? "darkorange"
                         : timestamp !== null && i <= timestamp
                           ? "darkorange"
