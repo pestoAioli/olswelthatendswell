@@ -158,7 +158,7 @@ export default function Home({ products }: any) {
       timestamp: date,
       fakeTimestamp: timestamp ? timestamp : randomInteger(1, 60),
       name: e.target.name.value,
-      avatar: e.target.avatar ? e.target.avatar.value : Object.values(LINKS)[randomInteger(0, 7)],
+      avatar: e.target.avatar ? e.target.avatar.value : Object.values(LINKS)[Math.floor(Math.random() * 8)],
     };
     if (timeStampTaken.current.includes(data.fakeTimestamp)) {
       e.target.comment.value = "";
