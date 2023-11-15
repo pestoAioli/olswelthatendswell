@@ -29,7 +29,6 @@ const today = moment().format().slice(0, 10);
 export default function Home({ products }: any) {
   const { hoverProps, isHovered } = useHover({
     onHoverStart: (e) => {
-      console.log(e.target.id)
       setHoverer(e.target.id)
     },
   });
@@ -69,12 +68,9 @@ export default function Home({ products }: any) {
           }
         }
         if (typeof x === "number") {
-          console.log(
-            moment(x).format().slice(0, 10),
-            "number format check thang"
-          );
-          if (moment(x).format().slice(0, 10) === date)
+          if (moment(x).format().slice(0, 10) === date) {
             commentsOfToday.push(data[i]);
+          }
         }
       }
       setComments(commentsOfToday);
@@ -83,7 +79,6 @@ export default function Home({ products }: any) {
   );
   let timeStampTaken = useRef([]);
   function handleResize() {
-    console.log("resized to: ", window.innerWidth, "x", window.innerHeight);
     setWidth(() => window.innerWidth);
   }
   useEffect(() => {
@@ -126,15 +121,10 @@ export default function Home({ products }: any) {
     //     comment: "123412341234asdfsdfasdfasdf asdfasdfas asd"
     //   }
     // }])
-    console.log(timeStampTaken, "today");
-    console.log(moment().format());
     timeStampTaken.current = comments.map((com) => {
       return com.comment?.fakeTimestamp;
     });
-    console.log(timeStampTaken.current);
-    console.log(width);
     setWidth(() => window.innerWidth);
-    console.log(Date.parse(today.toLocaleString().slice(0, 8)));
     window.addEventListener("resize", handleResize);
     const poop = fetch("/api/hello", {
       method: "GET",
@@ -157,7 +147,6 @@ export default function Home({ products }: any) {
   useEffect(() => {
     if (document.getElementById(picId) != null) {
       document.getElementById(picId).style.setProperty("border", "2px solid red")
-      console.log(picId)
     }
   }, [picId])
 
@@ -172,8 +161,6 @@ export default function Home({ products }: any) {
       avatar: e.target.avatar ? e.target.avatar.value : Object.values(LINKS)[randomInteger(0, 7)],
     };
     if (timeStampTaken.current.includes(data.fakeTimestamp)) {
-      console.log(timeStampTaken.current);
-
       e.target.comment.value = "";
       e.target.comment.name = "";
       return alert("someone already left a comment at that timestamp rawrXD");
@@ -378,7 +365,6 @@ export default function Home({ products }: any) {
               max={today}
               onChange={(e) => {
                 setDate(() => e.target.value);
-                console.log(e.target.value);
               }}
             />
           </div>
@@ -414,7 +400,6 @@ export default function Home({ products }: any) {
                 }}
                 onClick={() => {
                   setTimestamp(() => i);
-                  console.log(comments);
                 }}
               />
             ))}
