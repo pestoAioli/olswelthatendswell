@@ -169,7 +169,7 @@ export default function Home({ products }: any) {
       timestamp: date,
       fakeTimestamp: timestamp ? timestamp : randomInteger(1, 60),
       name: e.target.name.value,
-      avatar: e.target.avatar.value ? e.target.avatar.value : Object.values(LINKS)[Math.floor(Math.random() * 8)],
+      avatar: e.target.avatar ? e.target.avatar.value : Object.values(LINKS)[randomInteger(0, 7)],
     };
     if (timeStampTaken.current.includes(data.fakeTimestamp)) {
       console.log(timeStampTaken.current);
@@ -533,10 +533,10 @@ export default function Home({ products }: any) {
                       alt="spunchbob"
                       width={40}
                       height={40}
-                      id="1"
+                      id="1p"
                       onClick={() => {
                         clearPreviousImageStyles();
-                        setPicId("1")
+                        setPicId("1p")
                       }}
                     />
                     <input type="radio" name="avatar" value={LINKS.link1} />
@@ -547,10 +547,10 @@ export default function Home({ products }: any) {
                       alt="dog"
                       width={40}
                       height={40}
-                      id="2"
+                      id="2p"
                       onClick={() => {
                         clearPreviousImageStyles();
-                        setPicId("2")
+                        setPicId("2p")
                       }}
                     />
                     <input type="radio" name="avatar" value={LINKS.link2} />
@@ -561,10 +561,10 @@ export default function Home({ products }: any) {
                       alt="dog"
                       width={40}
                       height={40}
-                      id="3"
+                      id="3p"
                       onClick={() => {
                         clearPreviousImageStyles();
-                        setPicId("3")
+                        setPicId("3p")
                       }}
                     />
                     <input type="radio" name="avatar" value={LINKS.link3} />
@@ -575,10 +575,10 @@ export default function Home({ products }: any) {
                       alt="dog"
                       width={40}
                       height={40}
-                      id="4"
+                      id="4p"
                       onClick={() => {
                         clearPreviousImageStyles();
-                        setPicId("4")
+                        setPicId("4p")
                       }}
                     />
                     <input type="radio" name="avatar" value={LINKS.link4} />
@@ -589,10 +589,10 @@ export default function Home({ products }: any) {
                       alt="dog"
                       width={40}
                       height={40}
-                      id="5"
+                      id="5p"
                       onClick={() => {
                         clearPreviousImageStyles();
-                        setPicId("5")
+                        setPicId("5p")
                       }}
                     />
                     <input type="radio" name="avatar" value={LINKS.link5} />
@@ -603,10 +603,10 @@ export default function Home({ products }: any) {
                       alt="dog"
                       width={40}
                       height={40}
-                      id="6"
+                      id="6p"
                       onClick={() => {
                         clearPreviousImageStyles();
-                        setPicId("6")
+                        setPicId("6p")
                       }}
                     />
                     <input type="radio" name="avatar" value={LINKS.link6} />
@@ -617,10 +617,10 @@ export default function Home({ products }: any) {
                       alt="dog"
                       width={40}
                       height={40}
-                      id="7"
+                      id="7p"
                       onClick={() => {
                         clearPreviousImageStyles();
-                        setPicId("7")
+                        setPicId("7p")
                       }}
                     />
                     <input type="radio" name="avatar" value={LINKS.link7} />
@@ -631,10 +631,10 @@ export default function Home({ products }: any) {
                       alt="dog"
                       width={40}
                       height={40}
-                      id="8"
+                      id="8p"
                       onClick={() => {
                         clearPreviousImageStyles();
-                        setPicId("8")
+                        setPicId("8p")
                       }}
                     />
                     <input type="radio" name="avatar" value={LINKS.link8} />
@@ -645,10 +645,10 @@ export default function Home({ products }: any) {
                       alt="dog"
                       width={40}
                       height={40}
-                      id="9"
+                      id="9p"
                       onClick={() => {
                         clearPreviousImageStyles();
-                        setPicId("9")
+                        setPicId("9p")
                       }}
                     />
                     <input type="radio" name="avatar" value={LINKS.link9} />
@@ -659,10 +659,10 @@ export default function Home({ products }: any) {
                       alt="dog"
                       width={40}
                       height={40}
-                      id="10"
+                      id="10p"
                       onClick={() => {
                         clearPreviousImageStyles();
-                        setPicId("10")
+                        setPicId("10p")
                       }}
                     />
                     <input type="radio" name="avatar" value={LINKS.link10} />
