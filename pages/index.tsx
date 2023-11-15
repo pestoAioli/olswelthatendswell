@@ -91,14 +91,7 @@ export default function Home({ products }: any) {
       return com.comment?.fakeTimestamp;
     });
   });
-  // useEffect(() => {
-  //   if (elementRef.current) {
-  //     console.log(elementRef, "woooooorking");
-  //     elementRef.current.scrollLeft = 0;
-  //   } else {
-  //     console.log(elementRef, "noooot work");
-  //   }
-  // }, [width]);
+
   useEffect(() => {
     // setComments([{
     //   comment: {
@@ -176,7 +169,7 @@ export default function Home({ products }: any) {
       timestamp: date,
       fakeTimestamp: timestamp ? timestamp : randomInteger(1, 60),
       name: e.target.name.value,
-      avatar: e.target.avatar.value ? e.target.avatar.value : null,
+      avatar: e.target.avatar.value ? e.target.avatar.value : Object.values(LINKS)[Math.floor(Math.random() * 8)],
     };
     if (timeStampTaken.current.includes(data.fakeTimestamp)) {
       console.log(timeStampTaken.current);
