@@ -76,7 +76,6 @@ export default function Home({ products }: any) {
   );
   let timeStampTaken = useRef([]);
   function handleResize() {
-    console.log("resized to: ", window.innerWidth, "x", window.innerHeight);
     setWidth(() => window.innerWidth);
   }
   useEffect(() => {
@@ -93,39 +92,39 @@ export default function Home({ products }: any) {
   //   }
   // }, [width]);
   useEffect(() => {
-    // setComments([{
-    //   comment: {
-    //     name: 'bob',
-    //     fakeTimestamp: 8,
-    //     comment: "asdfsdfasdfasdf asdfasdfas asdfa"
-    //   }
-    // },
-    // {
-    //   comment: {
-    //     name: 'bob',
-    //     fakeTimestamp: 28,
-    //     comment: "asdfsdfasdfasdf asdfasdfas asdfa"
-    //   }
-    // },
-    // {
-    //   comment: {
-    //     name: 'bob',
-    //     fakeTimestamp: 18,
-    //     comment: "asdfsdfasdfasdf asdfasdfas asdfa"
-    //   }
-    // }, {
-    //   comment: {
-    //     name: 'bob',
-    //     fakeTimestamp: 150,
-    //     comment: "asdfsdfasdfasdf asdfasdfas asdfa"
-    //   }
-    // }, {
-    //   comment: {
-    //     name: 'bob',
-    //     fakeTimestamp: 180,
-    //     comment: "asdfsdfasdfasdf asdfasdfas asdfa"
-    //   }
-    // }])
+    setComments([{
+      comment: {
+        name: 'bob',
+        fakeTimestamp: 8,
+        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+      }
+    },
+    {
+      comment: {
+        name: 'bob',
+        fakeTimestamp: 28,
+        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+      }
+    },
+    {
+      comment: {
+        name: 'bob',
+        fakeTimestamp: 18,
+        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+      }
+    }, {
+      comment: {
+        name: 'bob',
+        fakeTimestamp: 150,
+        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+      }
+    }, {
+      comment: {
+        name: 'bob',
+        fakeTimestamp: 180,
+        comment: "asdfasdfasdfasdfasdflkjkkjlkjfkdjfkdjfkdkf"
+      }
+    }])
     // console.log(timeStampTaken, "today");
     console.log(moment().format());
     timeStampTaken.current = comments.map((com) => {
@@ -136,14 +135,14 @@ export default function Home({ products }: any) {
     setWidth(() => window.innerWidth);
     console.log(Date.parse(today.toLocaleString().slice(0, 8)));
     window.addEventListener("resize", handleResize);
-    const poop = fetch("/api/hello", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setTodaysComments(data));
+    // const poop = fetch("/api/hello", {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => setTodaysComments(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, setTodaysComments, updateComments]);
 
@@ -468,37 +467,105 @@ export default function Home({ products }: any) {
                         (i === com.comment?.fakeTimestamp &&
                           i === timestamp &&
                           !showComment) ? (
-                        <div
-                          style={{
-                            position: "relative",
-                            zIndex: 2000,
-                            right: i > 100 ? "200px" : null
-                          }}
-                          key={k + 999}
-                        >
-                          {i < 100 ? (
-                            <>
-                              <span style={{
-                                display: "block",
-                                width: "200px",
-                                overflow: "hidden",
-                                whiteSpace: "nowrap",
-                                textOverflow: "ellipsis",
-                              }}><span style={{
-                                color: "orangered"
-                              }}>{com.comment?.name}</span>{" "}<span style={{ color: "black" }}>{com.comment?.comment}</span></span>
-                            </>
+                        <div>
+                          {width > 600 ? (
+                            <div style={{
+                              display: "flex",
+                              position: "relative",
+                              bottom: 14,
+                              zIndex: 2000,
+                              whiteSpace: "nowrap",
+                            }}
+                              key={k + 999}>
+                              {i < 100 ? (
+                                <>
+                                  <p
+                                    style={{
+                                      color: "orangered",
+                                      display: "inline-block",
+                                    }}
+                                  >
+                                    {com.comment?.name}
+                                  </p>
+                                  <p
+                                    style={{
+                                      display: "inline-block",
+                                    }}
+                                  >
+                                    {com.comment?.name ? ": " : ""}
+                                    {com.comment?.comment}
+                                  </p>
+                                </>
+                              ) :
+                                <>
+                                  <p
+                                    style={{
+                                      display: "inline-block",
+                                    }}
+                                  >
+
+                                    {com.comment?.comment}
+
+                                  </p>
+                                  <p
+                                    style={{
+                                      display: "inline-block",
+                                      color: "orangered",
+                                    }}
+                                  >
+                                    {com.comment?.name}
+                                  </p>
+                                </>
+                              }
+                              <p
+                                style={{
+                                  color: "orangered",
+                                  display: "inline-block",
+                                }}
+                              >
+                                {com.comment?.name}
+                              </p>
+                              <p
+                                style={{
+                                  display: "inline-block",
+                                }}
+                              >
+                                {com.comment?.name ? ": " : ""}
+                                {com.comment?.comment}
+                              </p>
+                            </div>
                           ) : (
-                            <div style={{ width: "500px" }}>
-                              <span style={{
-                                display: "block",
-                                width: "200px",
-                                marginRight: "200px",
-                                overflow: "hidden",
-                                whiteSpace: "nowrap",
-                                textOverflow: "ellipsis",
-                              }}>{com.comment?.comment}{" "}</span><span style={{ position: "absolute", left: "202px", bottom: "-1px", color: "orangered" }}>{com.comment?.name}</span>
-                            </div>)}
+                            <div style={{
+                              position: "relative",
+                              zIndex: 2000,
+                              right: i > 100 ? "200px" : null
+                            }}>
+                              {
+                                i < 100 ? (
+                                  <>
+                                    <span style={{
+                                      display: "block",
+                                      width: "200px",
+                                      overflow: "hidden",
+                                      whiteSpace: "nowrap",
+                                      textOverflow: "ellipsis",
+                                    }}><span style={{
+                                      color: "orangered"
+                                    }}>{com.comment?.name}</span>{" "}<span style={{ color: "black" }}>{com.comment?.comment}</span></span>
+                                  </>
+                                ) : (
+                                  <div style={{ width: "500px" }}>
+                                    <span style={{
+                                      display: "block",
+                                      width: "200px",
+                                      marginRight: "200px",
+                                      overflow: "hidden",
+                                      whiteSpace: "nowrap",
+                                      textOverflow: "ellipsis",
+                                    }}>{com.comment?.comment}{" "}</span><span style={{ position: "absolute", left: "202px", bottom: "-1px", color: "orangered" }}>{com.comment?.name}</span>
+                                  </div>)}
+                            </div>
+                          )}
                         </div >
                       ) : null}
                     </>
