@@ -6,6 +6,7 @@ import { useHover } from "react-aria";
 import moment from "moment";
 import Script from "next/script";
 import Link from "next/link";
+import { timeStamp } from "console";
 
 enum LINKS {
   link1 = "https://media.tenor.com/Ag7VvFqfDIIAAAAC/jgc-spongebob.gif",
@@ -26,7 +27,12 @@ function randomInteger(min: number, max: number) {
 // const today = new Date().toISOString().slice(0, 10);
 const today = moment().format().slice(0, 10);
 export default function Home({ products }: any) {
-  const { hoverProps, isHovered } = useHover({});
+  const { hoverProps, isHovered } = useHover({
+    onHoverStart: (e) => {
+      console.log(e.target.id)
+      setHoverer(e.target.id)
+    },
+  });
   const elementRef = useRef(null);
   const [timestamp, setTimestamp] = useState(null);
   const [date, setDate] = useState(today);
@@ -37,16 +43,17 @@ export default function Home({ products }: any) {
   const [updateComments, setUpdateComments] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [picId, setPicId] = useState('');
+  const [hoverer, setHoverer] = useState('');
   const [bars, setBars] = useState(() => {
     const bars = [];
-    for (let i = 0; i < 190; i++) {
+    for (let i = 0; i < 160; i++) {
       bars.push(randomInteger(30, 60));
     }
     return bars;
   });
   const [smolBars, setSmolBars] = useState(() => {
     const bars = [];
-    for (let i = 0; i < 190; i++) {
+    for (let i = 0; i < 160; i++) {
       bars.push(randomInteger(1, 30));
     }
     return bars;
@@ -144,7 +151,7 @@ export default function Home({ products }: any) {
     })
       .then((res) => res.json())
       .then((data) => setTodaysComments(data));
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, setTodaysComments, updateComments]);
 
   function clearPreviousImageStyles() {
@@ -393,21 +400,24 @@ export default function Home({ products }: any) {
               <div
                 {...hoverProps}
                 key={i * 19}
+                id={`${i}`}
                 style={{
-                  width: "0.29vw",
+                  width: "0.39vw",
                   position: "relative",
                   cursor: "pointer",
                   marginTop: bar,
                   minHeight: 70,
                   backgroundColor:
-                    timestamp !== null && i <= timestamp
+                    isHovered && hoverer && i >= Number(hoverer) && i <= timestamp
                       ? "orange"
-                      : isHovered && timestamp !== null && i <= timestamp
-                        ? "orange"
-                        : isHovered
-                          ? "darkgray"
-                          : "grey",
-                  transition: "0.5s",
+                      : isHovered && hoverer && i <= Number(hoverer) && i <= timestamp
+                        ? "darkorange"
+                        : timestamp !== null && i <= timestamp
+                          ? "darkorange"
+                          : isHovered && timestamp !== null && hoverer && i <= Number(hoverer)
+                            ? "orange"
+                            : "gray",
+                  transition: "0.1s"
                 }}
                 onClick={() => {
                   setTimestamp(() => i);
@@ -428,7 +438,7 @@ export default function Home({ products }: any) {
                 key={i}
                 className={styles.poop}
                 style={{
-                  width: "0.29vw",
+                  width: "0.39vw",
                   position: "relative",
                   height: bar,
                   backgroundColor: showComment === i ? "grey" : "darkgrey",
