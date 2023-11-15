@@ -119,6 +119,12 @@ export default function Home({ products }: any) {
         fakeTimestamp: 150,
         comment: "asdfsdfasdfasdf asdfasdfas asdfa"
       }
+    }, {
+      comment: {
+        name: 'bob',
+        fakeTimestamp: 180,
+        comment: "asdfsdfasdfasdf asdfasdfas asdfa"
+      }
     }])
     console.log(timeStampTaken, "today");
     console.log(moment().format());
@@ -130,15 +136,15 @@ export default function Home({ products }: any) {
     setWidth(() => window.innerWidth);
     console.log(Date.parse(today.toLocaleString().slice(0, 8)));
     window.addEventListener("resize", handleResize);
-    const poop = fetch("/api/hello", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setTodaysComments(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // const poop = fetch("/api/hello", {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => setTodaysComments(data));
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, setTodaysComments, updateComments]);
 
   function clearPreviousImageStyles() {
@@ -466,27 +472,33 @@ export default function Home({ products }: any) {
                           style={{
                             position: "relative",
                             zIndex: 2000,
+                            right: i > 100 ? "200px" : null
                           }}
                           key={k + 999}
                         >
                           {i < 100 ? (
-                            <span style={{
-                              display: "block",
-                              width: "100px",
-                              overflow: "hidden",
-                              whiteSpace: "nowrap",
-                              textOverflow: "ellipsis",
-                            }}>{com.comment?.name}{" "}<span>{com.comment?.comment}</span></span>
-                          ) : (
                             <>
                               <span style={{
                                 display: "block",
-                                width: "100px",
+                                width: "200px",
                                 overflow: "hidden",
                                 whiteSpace: "nowrap",
                                 textOverflow: "ellipsis",
-                              }}>{com.comment?.comment}{" "}</span><span>{com.comment?.name}</span>
-                            </>)}
+                              }}><span style={{
+                                color: "orangered"
+                              }}>{com.comment?.name}</span>{" "}<span style={{ color: "black" }}>{com.comment?.comment}</span></span>
+                            </>
+                          ) : (
+                            <div style={{ width: "500px" }}>
+                              <span style={{
+                                display: "block",
+                                width: "200px",
+                                marginRight: "200px",
+                                overflow: "hidden",
+                                whiteSpace: "nowrap",
+                                textOverflow: "ellipsis",
+                              }}>{com.comment?.comment}{" "}</span><span style={{ position: "absolute", left: "202px", bottom: "-1px", color: "orangered" }}>{com.comment?.name}</span>
+                            </div>)}
                         </div >
                       ) : null}
                     </>
