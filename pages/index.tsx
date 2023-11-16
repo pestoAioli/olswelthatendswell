@@ -471,8 +471,7 @@ export default function Home({ products }: any) {
                               overflow: "hidden",
                               whiteSpace: "nowrap",
                               textOverflow: "ellipsis",
-                              color: "orangered"
-                            }}>{com.comment?.name}{" "}<span style={{ color: "black" }}>{com.comment?.comment}</span></span>
+                            }}><span style={{ color: "orangered" }}>{com.comment?.name}{" "}</span><span style={{ color: "black" }}>{com.comment?.comment}</span></span>
                           ) : (
                             <span style={{
                               display: "block",
