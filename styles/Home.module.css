@@ -10,3 +10,7 @@
 .product *:not(img) {
   display: hidden;
 }
+
+.embedded {
+  background-color: white;
+}

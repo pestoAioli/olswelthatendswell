@@ -299,6 +299,12 @@ export default function Home({ products }: any) {
                   }
                 </div>
               </div>
+              <Link href="https://soundcloudhero.com" style={{ width: width - 24 }}>
+                <Image src='/sch.png' priority width={width - 24}
+                  height={width / 2}
+                  alt="hi"
+                />
+              </Link>
               {width < 700 ?
                 <iframe src="https://olswel.sellfy.store/embed/product/bulyuz/" style={{
                   border: "none",
@@ -471,8 +477,7 @@ export default function Home({ products }: any) {
                               overflow: "hidden",
                               whiteSpace: "nowrap",
                               textOverflow: "ellipsis",
-                              color: "orangered"
-                            }}>{com.comment?.name}{" "}<span style={{ color: "black" }}>{com.comment?.comment}</span></span>
+                            }}><span style={{ color: "orangered" }}>{com.comment?.name}{" "}</span><span style={{ color: "black" }}>{com.comment?.comment}</span></span>
                           ) : (
                             <span style={{
                               display: "block",
