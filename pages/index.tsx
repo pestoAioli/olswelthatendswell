@@ -313,7 +313,8 @@ export default function Home({ products }: any) {
                   fontSize: "12px",
                   height: 500,
                   marginTop: 12,
-                  marginBottom: "-30px"
+                  marginBottom: "-30px",
+                  zIndex: -2000
                 }}
                 ></iframe>
                 : null
