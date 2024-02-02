@@ -238,6 +238,7 @@ export default function Home({ products }: any) {
               style={{
                 display: "flex",
                 flexDirection: "column",
+                alignItems: 'center'
               }}
             >
               <div style={{
