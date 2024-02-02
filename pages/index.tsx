@@ -300,7 +300,7 @@ export default function Home({ products }: any) {
                   }
                 </div>
               </div>
-              <Link href="https://soundcloudhero.com" style={{ width: width - 24 }}>
+              <Link href="https://soundcloudhero.com/products/soundcloud-hero-t" style={{ width: width - 24 }}>
                 <Image src='/sch.png' priority width={width - 24}
                   height={width / 2}
                   alt="hi"
