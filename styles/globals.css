@@ -9,3 +9,6 @@ slfy-store .meta-content:not(:empty) {
   width: 0;
   height: 0;
 }
+html .embedded {
+  background-color: white;
+}
