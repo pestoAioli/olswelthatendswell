@@ -286,40 +286,25 @@ export default function Home({ products }: any) {
                   <Link href="https://www.instagram.com/olswelolswel">
                     www.instagram.com
                   </Link>
-                  {width > 700 ?
-                    <iframe src="https://olswel.sellfy.store/embed/product/bulyuz/" style={{
-                      border: "none",
-                      overflowY: "hidden",
-                      fontSize: "12px",
-                      height: 500,
-                      marginTop: 12,
-                      marginBottom: "-30px"
-                    }}
-                    ></iframe>
-                    : null
-                  }
                 </div>
               </div>
-              <iframe src="https://olswel.sellfy.store/embed/product/dsq3il/" width="100%" height="600" style={{ border: "none" }}></iframe>
+              <iframe src="https://olswel.sellfy.store/embed/product/dsq3il/" width="100%" height="1200px" style={{ border: "none" }}></iframe>
               <Link href="https://soundcloudhero.com/products/soundcloud-hero-t" style={{ width: width - 24 }}>
                 <Image src='/sch.png' priority width={width - 24}
                   height={width / 2}
                   alt="hi"
                 />
               </Link>
-              {width < 700 ?
-                <iframe src="https://olswel.sellfy.store/embed/product/bulyuz/" style={{
-                  border: "none",
-                  overflowY: "hidden",
-                  fontSize: "12px",
-                  height: 500,
-                  marginTop: 12,
-                  marginBottom: "-30px",
-                  zIndex: -2000
-                }}
-                ></iframe>
-                : null
-              }
+              <iframe src="https://olswel.sellfy.store/embed/product/bulyuz/" style={{
+                border: "none",
+                overflowY: "hidden",
+                fontSize: "12px",
+                height: 500,
+                marginTop: 12,
+                marginBottom: "-30px",
+                zIndex: -2000
+              }}
+              ></iframe>
             </div>
           </div>
           {/*shit went here*/}
