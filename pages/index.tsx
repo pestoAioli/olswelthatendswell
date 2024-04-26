@@ -243,6 +243,7 @@ export default function Home({ products }: any) {
             >
               <div style={{
                 display: "flex",
+                marginTop: "-40px"
               }}>
                 <Image
                   src={"/olswellogo.png"}
