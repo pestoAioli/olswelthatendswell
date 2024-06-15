@@ -278,32 +278,32 @@ export default function Home({ products }: any) {
                   >
                     olswel.net
                   </h1>
-                  <Link href="https://soundcloud.com/olswel">
+                  <Link href="https://soundcloud.com/olswel" target="_blank">
                     www.soundcloud.com
                   </Link>
-                  <Link href="https://open.spotify.com/artist/5aFfTz3PUiklCHbgz2Aylb?si=lkTC6RvfTPaR8oPccJQdYg">
+                  <Link href="https://open.spotify.com/artist/5aFfTz3PUiklCHbgz2Aylb?si=lkTC6RvfTPaR8oPccJQdYg" target="_blank">
                     www.spotify.com
                   </Link>
-                  <Link href="https://www.instagram.com/olswelolswel">
+                  <Link href="https://www.instagram.com/olswelolswel" target="_blank">
                     www.instagram.com
                   </Link>
                 </div>
               </div>
               <div>
-                <Link href="https://olswel.sellfy.store/p/massive1/" style={{ width: width - 24 }}>
+                <Link href="https://olswel.sellfy.store/p/massive1/" target="_blank" style={{ width: width - 24 }}>
                   <Image src='/massiv1.jpg' priority width={width - (width / 2)}
                     height={(width / 2) + 24}
                     alt="hi"
                   />
                 </Link>
               </div>
-              <Link href="https://soundcloudhero.com/products/soundcloud-hero-t" style={{ width: width - 24 }}>
+              <Link href="https://soundcloudhero.com/products/soundcloud-hero-t" target="_blank" style={{ width: width - 24 }}>
                 <Image src='/sch.png' priority width={width - 24}
                   height={width / 2}
                   alt="hi"
                 />
               </Link>
-              <Link href="https://olswel.sellfy.store/p/real-fx/" style={{ margin: "auto" }}>
+              <Link href="https://olswel.sellfy.store/p/real-fx/" target="_blank" style={{ margin: "auto" }}>
                 <Image src='/rfx.png' priority width={width - (width / 2)}
                   height={(width / 2) + 48}
                   alt="hi"
