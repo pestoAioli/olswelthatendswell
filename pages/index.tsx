@@ -303,16 +303,12 @@ export default function Home({ products }: any) {
                   alt="hi"
                 />
               </Link>
-              <iframe src="https://olswel.sellfy.store/embed/product/bulyuz/" style={{
-                border: "none",
-                overflowY: "hidden",
-                fontSize: "12px",
-                height: 500,
-                marginTop: 12,
-                marginBottom: "-30px",
-                zIndex: -2000
-              }}
-              ></iframe>
+              <Link href="https://olswel.sellfy.store/p/real-fx/" style={{ margin: "auto" }}>
+                <Image src='/rfx.png' priority width={width - (width / 2)}
+                  height={(width / 2) + 48}
+                  alt="hi"
+                />
+              </Link>
             </div>
           </div>
           {/*shit went here*/}
