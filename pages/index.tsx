@@ -291,7 +291,6 @@ export default function Home({ products }: any) {
               </div>
               <div
                 style={{
-                  alignSelf: "flex-start",
                 }}
               >
                 <input
@@ -616,6 +615,9 @@ export default function Home({ products }: any) {
                 <Link href="https://olswel.sellfy.store/p/massive1/" target="_blank" style={{ width: width - 24 }}>
                   <Image src='/massiv1.jpg' priority width={width - (width / 2)}
                     height={(width / 2) + 24}
+                    style={{
+                      margin: "8px"
+                    }}
                     alt="hi"
                   />
                 </Link>
@@ -632,50 +634,30 @@ export default function Home({ products }: any) {
                   alt="hi"
                 />
               </Link>
+              <Link href="https://olswel.sellfy.store/p/8008/" target="_blank" style={{ margin: "auto" }}>
+                <Image src='/paris.jpg' priority width={width - (width / 2)}
+                  height={(width / 2) + 48}
+                  alt="hi"
+                />
+              </Link>
+              <Link href="https://olswel.sellfy.store/p/6hdx/" target="_blank" style={{ margin: "auto" }}>
+                <Image src='/red.jpeg' priority width={width - (width / 2)}
+                  height={(width / 2) + 48}
+                  alt="hi"
+                />
+              </Link>
+              <Link href="https://olswel.sellfy.store/p/hld8in/" target="_blank" style={{ margin: "auto" }}>
+                <Image src='/future.jpeg' priority width={width - (width / 2)}
+                  height={(width / 2) + 48}
+                  alt="hi"
+                />
+              </Link>
             </div>
           </div>
           {/*shit went here*/}
           <div>
 
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: "5vw",
-              marginBottom: 24,
-            }}
-          >
-            <iframe
-              src="https://olswel.sellfy.store/embed/product/dfihld/"
-              style={{
-                border: "none",
-                overflowY: "hidden",
-                fontSize: "12px",
-                height: 250,
-                width: 105,
-              }}
-            ></iframe>
-            <iframe
-              src="https://olswel.sellfy.store/embed/product/6HDx/"
-              style={{
-                border: "none",
-                overflow: "hidden",
-                height: 250,
-                width: 105,
-              }}
-            ></iframe>
-            <iframe
-              src="https://olswel.sellfy.store/embed/product/hld8in/"
-              style={{
-                border: "none",
-                overflow: "hidden",
-                height: 200,
-                width: 105,
-              }}
-            ></iframe>
-          </div>
-
         </main >
       </>
     );
