@@ -289,10 +289,335 @@ export default function Home({ products }: any) {
                   </Link>
                 </div>
               </div>
+              <div
+                style={{
+                }}
+              >
+                <input
+                  type="date"
+                  min={"2023-03-28"}
+                  max={today}
+                  onChange={(e) => {
+                    setDate(() => e.target.value);
+                  }}
+                />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 1,
+                }}
+                className={styles.pee}
+              >
+                {bars.map((bar, i) => (
+                  <div
+                    {...hoverProps}
+                    key={i * 19}
+                    id={`${i}`}
+                    style={{
+                      width: "0.39vw",
+                      position: "relative",
+                      cursor: "pointer",
+                      marginTop: bar,
+                      minHeight: 70,
+                      backgroundColor:
+                        isHovered && hoverer && i >= Number(hoverer) && i <= timestamp
+                          ? "orange"
+                          : timestamp !== null && isHovered && hoverer && i <= Number(hoverer) && i <= timestamp
+                            ? "darkorange"
+                            : timestamp !== null && i <= timestamp
+                              ? "darkorange"
+                              : isHovered && timestamp !== null && hoverer && i <= Number(hoverer)
+                                ? "orange"
+                                : "gray",
+                      transition: "0.1s"
+                    }}
+                    onClick={() => {
+                      setTimestamp(() => i);
+                    }}
+                  />
+                ))}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 1,
+                  marginTop: 1,
+                }}
+              >
+                {smolBars.map((bar, i) => (
+                  <div
+                    key={i}
+                    className={styles.poop}
+                    style={{
+                      width: "0.39vw",
+                      position: "relative",
+                      height: bar,
+                      backgroundColor: showComment === i ? "grey" : "darkgrey",
+                      transition: "0.5s",
+                    }}
+                    onMouseOver={() => {
+                      setShowComment(() => i);
+                    }}
+                    onMouseOut={() => {
+                      setShowComment(() => null);
+                    }}
+                  >
+                    <div>
+                      {comments.map((com, k) => (
+                        <>
+                          {i === com.comment?.fakeTimestamp && (
+                            <Image
+                              src={
+                                com.comment?.avatar
+                                  ? com.comment.avatar
+                                  : "/westadam.png"
+                              }
+                              width={16}
+                              height={24}
+                              key={k * 0.2}
+                              alt="westadam"
+                              style={{
+                                position: "relative",
+                                right: 3,
+                                bottom: 0,
+                                zIndex: 12005,
+                              }}
+                            />
+                          )}
+                          {(i === com.comment?.fakeTimestamp &&
+                            showComment === com.comment?.fakeTimestamp) ||
+                            (i === com.comment?.fakeTimestamp &&
+                              i === timestamp &&
+                              !showComment) ? (
+                            <div
+                              style={{
+                                position: "relative",
+                                zIndex: 2000,
+                                direction: i < 100 ? "ltr" : "rtl"
+                              }}
+                              key={k + 999}
+                            >
+                              {i < 100 ? (
+                                <span style={{
+                                  display: "block",
+                                  width: width < 400 ? "200px" : "400px",
+                                  overflow: "hidden",
+                                  whiteSpace: "nowrap",
+                                  textOverflow: "ellipsis",
+                                }}><span style={{ color: "orangered" }}>{com.comment?.name}{" "}</span><span style={{ color: "black" }}>{com.comment?.comment}</span></span>
+                              ) : (
+                                <span style={{
+                                  display: "block",
+                                  width: width < 400 ? "200px" : "400px",
+                                  overflow: "hidden",
+                                  whiteSpace: "nowrap",
+                                  textOverflow: "ellipsis",
+                                  direction: "rtl"
+                                }}>{com.comment?.comment}{" "}<span style={{ color: "orangered" }}>{com.comment?.name}</span></span>
+                              )}
+                            </div >
+                          ) : null}
+                        </>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div
+                style={{
+                  marginTop: 20,
+                  display: "flex",
+                }}
+              >
+                <button
+                  onClick={() => {
+                    setShowModal(!showModal);
+                  }}
+                >
+                  {showModal ? "close" : "choose yuor avatar"} 🤓
+                </button>
+                <form
+                  className={styles.formForNewSpot}
+                  onSubmit={addAComment}
+                  method="post"
+                  encType="application/json"
+                >
+                  {showModal ? (
+                    <div style={{ display: "flex", justifyContent: "space-evenly", flexWrap: "wrap" }}>
+                      <label>
+                        <Image
+                          src="https://media.tenor.com/Ag7VvFqfDIIAAAAC/jgc-spongebob.gif"
+                          alt="spunchbob"
+                          width={40}
+                          height={40}
+                          id="1p"
+                          onClick={() => {
+                            clearPreviousImageStyles();
+                            setPicId("1p")
+                          }}
+                        />
+                        <input type="radio" name="avatar" value={LINKS.link1} />
+                      </label>
+                      <label>
+                        <Image
+                          src="https://media.tenor.com/nYvFGxkMAMwAAAAC/dog-walk.gif"
+                          alt="dog"
+                          width={40}
+                          height={40}
+                          id="2p"
+                          onClick={() => {
+                            clearPreviousImageStyles();
+                            setPicId("2p")
+                          }}
+                        />
+                        <input type="radio" name="avatar" value={LINKS.link2} />
+                      </label>
+                      <label>
+                        <Image
+                          src="https://media.discordapp.net/attachments/625161614533853242/924556863708733501/3dgifmaker18738.gif"
+                          alt="dog"
+                          width={40}
+                          height={40}
+                          id="3p"
+                          onClick={() => {
+                            clearPreviousImageStyles();
+                            setPicId("3p")
+                          }}
+                        />
+                        <input type="radio" name="avatar" value={LINKS.link3} />
+                      </label>
+                      <label>
+                        <Image
+                          src="https://media.tenor.com/CkObCaBFiUoAAAAd/monkey-makeup.gif"
+                          alt="dog"
+                          width={40}
+                          height={40}
+                          id="4p"
+                          onClick={() => {
+                            clearPreviousImageStyles();
+                            setPicId("4p")
+                          }}
+                        />
+                        <input type="radio" name="avatar" value={LINKS.link4} />
+                      </label>
+                      <label>
+                        <Image
+                          src="https://media.tenor.com/FfBSz0tmGqsAAAAC/dress-color.gif"
+                          alt="dog"
+                          width={40}
+                          height={40}
+                          id="5p"
+                          onClick={() => {
+                            clearPreviousImageStyles();
+                            setPicId("5p")
+                          }}
+                        />
+                        <input type="radio" name="avatar" value={LINKS.link5} />
+                      </label>
+                      <label>
+                        <Image
+                          src="https://media.tenor.com/USPznVgzIIIAAAAd/cat-dance.gif"
+                          alt="dog"
+                          width={40}
+                          height={40}
+                          id="6p"
+                          onClick={() => {
+                            clearPreviousImageStyles();
+                            setPicId("6p")
+                          }}
+                        />
+                        <input type="radio" name="avatar" value={LINKS.link6} />
+                      </label>
+                      <label>
+                        <Image
+                          src="https://media.discordapp.net/attachments/615515996458844160/1008657331355127808/watermark.gif"
+                          alt="dog"
+                          width={40}
+                          height={40}
+                          id="7p"
+                          onClick={() => {
+                            clearPreviousImageStyles();
+                            setPicId("7p")
+                          }}
+                        />
+                        <input type="radio" name="avatar" value={LINKS.link7} />
+                      </label>
+                      <label>
+                        <Image
+                          src="https://media.tenor.com/bUyhhbdRezIAAAAC/moon-bugman.gif"
+                          alt="dog"
+                          width={40}
+                          height={40}
+                          id="8p"
+                          onClick={() => {
+                            clearPreviousImageStyles();
+                            setPicId("8p")
+                          }}
+                        />
+                        <input type="radio" name="avatar" value={LINKS.link8} />
+                      </label>
+                      <label>
+                        <Image
+                          src="https://media.tenor.com/ss2YVzmsERQAAAAC/noob-banana-dancing.gif"
+                          alt="dog"
+                          width={40}
+                          height={40}
+                          id="9p"
+                          onClick={() => {
+                            clearPreviousImageStyles();
+                            setPicId("9p")
+                          }}
+                        />
+                        <input type="radio" name="avatar" value={LINKS.link9} />
+                      </label>
+                      <label>
+                        <Image
+                          src="https://media.tenor.com/vbERgHqJfKMAAAAd/troll-troll-face.gif"
+                          alt="dog"
+                          width={40}
+                          height={40}
+                          id="10p"
+                          onClick={() => {
+                            clearPreviousImageStyles();
+                            setPicId("10p")
+                          }}
+                        />
+                        <input type="radio" name="avatar" value={LINKS.link10} />
+                      </label>
+                    </div>
+                  ) : null}
+                  <input
+                    type="text"
+                    placeholder="yuor name"
+                    id="name"
+                    name="name"
+                    maxLength={14}
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="Leave a comment xD"
+                    id="comment"
+                    name="comment"
+                    maxLength={42}
+                    style={{
+                      width: "48vw",
+                    }}
+                    required
+                  />
+                  <button type="submit" disabled={disabled}>
+                    Submit
+                  </button>
+                </form>
+              </div>
               <div>
                 <Link href="https://olswel.sellfy.store/p/massive1/" target="_blank" style={{ width: width - 24 }}>
                   <Image src='/massiv1.jpg' priority width={width - (width / 2)}
                     height={(width / 2) + 24}
+                    style={{
+                      margin: "8px"
+                    }}
                     alt="hi"
                   />
                 </Link>
@@ -309,371 +634,29 @@ export default function Home({ products }: any) {
                   alt="hi"
                 />
               </Link>
+              <Link href="https://olswel.sellfy.store/p/8008/" target="_blank" style={{ margin: "auto" }}>
+                <Image src='/paris.jpg' priority width={width - (width / 2)}
+                  height={(width / 2) + 48}
+                  alt="hi"
+                />
+              </Link>
+              <Link href="https://olswel.sellfy.store/p/6hdx/" target="_blank" style={{ margin: "auto" }}>
+                <Image src='/red.jpeg' priority width={width - (width / 2)}
+                  height={(width / 2) + 48}
+                  alt="hi"
+                />
+              </Link>
+              <Link href="https://olswel.sellfy.store/p/hld8in/" target="_blank" style={{ margin: "auto" }}>
+                <Image src='/future.jpeg' priority width={width - (width / 2)}
+                  height={(width / 2) + 48}
+                  alt="hi"
+                />
+              </Link>
             </div>
           </div>
           {/*shit went here*/}
           <div>
 
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: "5vw",
-              marginBottom: 24,
-            }}
-          >
-            <iframe
-              src="https://olswel.sellfy.store/embed/product/dfihld/"
-              style={{
-                border: "none",
-                overflowY: "hidden",
-                fontSize: "12px",
-                height: 250,
-                width: 105,
-              }}
-            ></iframe>
-            <iframe
-              src="https://olswel.sellfy.store/embed/product/6HDx/"
-              style={{
-                border: "none",
-                overflow: "hidden",
-                height: 250,
-                width: 105,
-              }}
-            ></iframe>
-            <iframe
-              src="https://olswel.sellfy.store/embed/product/hld8in/"
-              style={{
-                border: "none",
-                overflow: "hidden",
-                height: 200,
-                width: 105,
-              }}
-            ></iframe>
-          </div>
-          <div
-            style={{
-              alignSelf: "flex-start",
-            }}
-          >
-            <input
-              type="date"
-              min={"2023-03-28"}
-              max={today}
-              onChange={(e) => {
-                setDate(() => e.target.value);
-              }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              gap: 1,
-            }}
-            className={styles.pee}
-          >
-            {bars.map((bar, i) => (
-              <div
-                {...hoverProps}
-                key={i * 19}
-                id={`${i}`}
-                style={{
-                  width: "0.39vw",
-                  position: "relative",
-                  cursor: "pointer",
-                  marginTop: bar,
-                  minHeight: 70,
-                  backgroundColor:
-                    isHovered && hoverer && i >= Number(hoverer) && i <= timestamp
-                      ? "orange"
-                      : timestamp !== null && isHovered && hoverer && i <= Number(hoverer) && i <= timestamp
-                        ? "darkorange"
-                        : timestamp !== null && i <= timestamp
-                          ? "darkorange"
-                          : isHovered && timestamp !== null && hoverer && i <= Number(hoverer)
-                            ? "orange"
-                            : "gray",
-                  transition: "0.1s"
-                }}
-                onClick={() => {
-                  setTimestamp(() => i);
-                }}
-              />
-            ))}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              gap: 1,
-              marginTop: 1,
-            }}
-          >
-            {smolBars.map((bar, i) => (
-              <div
-                key={i}
-                className={styles.poop}
-                style={{
-                  width: "0.39vw",
-                  position: "relative",
-                  height: bar,
-                  backgroundColor: showComment === i ? "grey" : "darkgrey",
-                  transition: "0.5s",
-                }}
-                onMouseOver={() => {
-                  setShowComment(() => i);
-                }}
-                onMouseOut={() => {
-                  setShowComment(() => null);
-                }}
-              >
-                <div>
-                  {comments.map((com, k) => (
-                    <>
-                      {i === com.comment?.fakeTimestamp && (
-                        <Image
-                          src={
-                            com.comment?.avatar
-                              ? com.comment.avatar
-                              : "/westadam.png"
-                          }
-                          width={16}
-                          height={24}
-                          key={k * 0.2}
-                          alt="westadam"
-                          style={{
-                            position: "relative",
-                            right: 3,
-                            bottom: 0,
-                            zIndex: 12005,
-                          }}
-                        />
-                      )}
-                      {(i === com.comment?.fakeTimestamp &&
-                        showComment === com.comment?.fakeTimestamp) ||
-                        (i === com.comment?.fakeTimestamp &&
-                          i === timestamp &&
-                          !showComment) ? (
-                        <div
-                          style={{
-                            position: "relative",
-                            zIndex: 2000,
-                            direction: i < 100 ? "ltr" : "rtl"
-                          }}
-                          key={k + 999}
-                        >
-                          {i < 100 ? (
-                            <span style={{
-                              display: "block",
-                              width: width < 400 ? "200px" : "400px",
-                              overflow: "hidden",
-                              whiteSpace: "nowrap",
-                              textOverflow: "ellipsis",
-                            }}><span style={{ color: "orangered" }}>{com.comment?.name}{" "}</span><span style={{ color: "black" }}>{com.comment?.comment}</span></span>
-                          ) : (
-                            <span style={{
-                              display: "block",
-                              width: width < 400 ? "200px" : "400px",
-                              overflow: "hidden",
-                              whiteSpace: "nowrap",
-                              textOverflow: "ellipsis",
-                              direction: "rtl"
-                            }}>{com.comment?.comment}{" "}<span style={{ color: "orangered" }}>{com.comment?.name}</span></span>
-                          )}
-                        </div >
-                      ) : null}
-                    </>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div
-            style={{
-              marginTop: 20,
-              display: "flex",
-            }}
-          >
-            <button
-              onClick={() => {
-                setShowModal(!showModal);
-              }}
-            >
-              {showModal ? "close" : "choose yuor avatar"} 🤓
-            </button>
-            <form
-              className={styles.formForNewSpot}
-              onSubmit={addAComment}
-              method="post"
-              encType="application/json"
-            >
-              {showModal ? (
-                <div style={{ display: "flex", justifyContent: "space-evenly", flexWrap: "wrap" }}>
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/Ag7VvFqfDIIAAAAC/jgc-spongebob.gif"
-                      alt="spunchbob"
-                      width={40}
-                      height={40}
-                      id="1p"
-                      onClick={() => {
-                        clearPreviousImageStyles();
-                        setPicId("1p")
-                      }}
-                    />
-                    <input type="radio" name="avatar" value={LINKS.link1} />
-                  </label>
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/nYvFGxkMAMwAAAAC/dog-walk.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                      id="2p"
-                      onClick={() => {
-                        clearPreviousImageStyles();
-                        setPicId("2p")
-                      }}
-                    />
-                    <input type="radio" name="avatar" value={LINKS.link2} />
-                  </label>
-                  <label>
-                    <Image
-                      src="https://media.discordapp.net/attachments/625161614533853242/924556863708733501/3dgifmaker18738.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                      id="3p"
-                      onClick={() => {
-                        clearPreviousImageStyles();
-                        setPicId("3p")
-                      }}
-                    />
-                    <input type="radio" name="avatar" value={LINKS.link3} />
-                  </label>
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/CkObCaBFiUoAAAAd/monkey-makeup.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                      id="4p"
-                      onClick={() => {
-                        clearPreviousImageStyles();
-                        setPicId("4p")
-                      }}
-                    />
-                    <input type="radio" name="avatar" value={LINKS.link4} />
-                  </label>
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/FfBSz0tmGqsAAAAC/dress-color.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                      id="5p"
-                      onClick={() => {
-                        clearPreviousImageStyles();
-                        setPicId("5p")
-                      }}
-                    />
-                    <input type="radio" name="avatar" value={LINKS.link5} />
-                  </label>
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/USPznVgzIIIAAAAd/cat-dance.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                      id="6p"
-                      onClick={() => {
-                        clearPreviousImageStyles();
-                        setPicId("6p")
-                      }}
-                    />
-                    <input type="radio" name="avatar" value={LINKS.link6} />
-                  </label>
-                  <label>
-                    <Image
-                      src="https://media.discordapp.net/attachments/615515996458844160/1008657331355127808/watermark.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                      id="7p"
-                      onClick={() => {
-                        clearPreviousImageStyles();
-                        setPicId("7p")
-                      }}
-                    />
-                    <input type="radio" name="avatar" value={LINKS.link7} />
-                  </label>
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/bUyhhbdRezIAAAAC/moon-bugman.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                      id="8p"
-                      onClick={() => {
-                        clearPreviousImageStyles();
-                        setPicId("8p")
-                      }}
-                    />
-                    <input type="radio" name="avatar" value={LINKS.link8} />
-                  </label>
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/ss2YVzmsERQAAAAC/noob-banana-dancing.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                      id="9p"
-                      onClick={() => {
-                        clearPreviousImageStyles();
-                        setPicId("9p")
-                      }}
-                    />
-                    <input type="radio" name="avatar" value={LINKS.link9} />
-                  </label>
-                  <label>
-                    <Image
-                      src="https://media.tenor.com/vbERgHqJfKMAAAAd/troll-troll-face.gif"
-                      alt="dog"
-                      width={40}
-                      height={40}
-                      id="10p"
-                      onClick={() => {
-                        clearPreviousImageStyles();
-                        setPicId("10p")
-                      }}
-                    />
-                    <input type="radio" name="avatar" value={LINKS.link10} />
-                  </label>
-                </div>
-              ) : null}
-              <input
-                type="text"
-                placeholder="yuor name"
-                id="name"
-                name="name"
-                maxLength={14}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Leave a comment xD"
-                id="comment"
-                name="comment"
-                maxLength={42}
-                style={{
-                  width: "48vw",
-                }}
-                required
-              />
-              <button type="submit" disabled={disabled}>
-                Submit
-              </button>
-            </form>
           </div>
         </main >
       </>
